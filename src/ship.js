@@ -1,4 +1,4 @@
-function ship(length) {
+function ship(length){
     return {
         length,
         hit() {
@@ -10,5 +10,4 @@ function ship(length) {
     }
 }
 
-let newShip = ship(5)
-console.log(newShip)
+module.exports = ship;
