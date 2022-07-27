@@ -1,4 +1,9 @@
-function sum(a, b) {
-    return a + b;
+function ship(length) {
+    return {
+        length
+    }
 }
-module.exports = sum;
+
+let newShip = ship(5)
+
+module.exports = ship;
