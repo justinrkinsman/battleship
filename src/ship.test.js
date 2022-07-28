@@ -1,4 +1,5 @@
 const ship = require('./ship.js');
+const calculateShipLength = require('./calculateShipLength.js');
 
 test('Ship Length', () => {
     let shipTest = ship(1)
@@ -30,3 +31,8 @@ test('Change ship sunk status', () => {
     shipIsSunk = true
     expect(shipIsSunk).toEqual(true)
 })
+
+test('Will return array same length as ship', () => {
+    expect(calculateShipLength(5)).toEqual([0, 0, 0, 0, 0])
+})
+
