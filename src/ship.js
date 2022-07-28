@@ -6,10 +6,15 @@ function ship(length){
         shipLength,
         hit(number) {
             shipLength[number] = 1
-            return shipLength
+            return shipLength 
         },
         isSunk() {
-            return false
+            if (shipLength.includes(0)){
+                return false
+            }
+            if (!shipLength.includes(0)){
+                return true
+            }
         }
     }
 }

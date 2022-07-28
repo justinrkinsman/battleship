@@ -21,16 +21,20 @@ test('Ship hit', () => {
 });
 
 test('Ship sunk', () => {
-    let shipTest = ship()
+    let shipTest = ship(5)
+    shipTest.hit(0)
+    shipTest.hit(1)
+    shipTest.hit(2)
+    shipTest.hit(3)
+    shipTest.hit(4)
     let shipIsSunk = shipTest.isSunk()
-    expect(shipIsSunk).toEqual(false);
+    expect(shipIsSunk).toEqual(true);
 });
 
-test('Change ship sunk status', () => {
-    let shipTest = ship()
+test('Ship still floats', () => {
+    let shipTest = ship(5)
     let shipIsSunk = shipTest.isSunk()
-    shipIsSunk = true
-    expect(shipIsSunk).toEqual(true)
+    expect(shipIsSunk).toEqual(false)
 })
 
 test('Will return array same length as ship', () => {
