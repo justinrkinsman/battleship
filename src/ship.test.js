@@ -41,8 +41,9 @@ test('Will return array same length as ship', () => {
     expect(calculateShipLength(5)).toEqual([0, 0, 0, 0, 0])
 })
 
-test('Says Hello', () => {
-    let attack = gameboard()
+test('Gameboard Attack', () => {
+    let attack = gameboard(5)
     let attackTest = attack.receiveAttack()
     expect(attackTest).toEqual('attack')
 })
+

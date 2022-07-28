@@ -35,6 +35,20 @@ function shipNames() {
     }
 }
 
+function gameboard(length) {
+    let currentShip = calculateShipLength(length)
+    let alsoCurrentShip = ship(length)
+    const createGameboard = () => {
+        console.log('hello')
+    }
+    const receiveAttack = () => {
+        return currentShip.shipLength
+    }
+    return {
+        receiveAttack, createGameboard
+    }
+}
+
 let newShip = ship(5)
 console.log(newShip)
 let shipSunk = newShip.isSunk()
