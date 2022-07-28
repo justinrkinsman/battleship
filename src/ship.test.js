@@ -47,3 +47,8 @@ test('Gameboard Attack', () => {
     expect(attackTest).toEqual('attack')
 })
 
+test('Gameboard Create Grid', () => {
+    let grid = gameboard(5)
+    let newGrid = grid.createGameboard(10, 10)
+    expect(newGrid).toEqual(100)
+})

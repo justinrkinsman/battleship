@@ -38,8 +38,9 @@ function shipNames() {
 function gameboard(length) {
     let currentShip = calculateShipLength(length)
     let alsoCurrentShip = ship(length)
+    let canvas = document.getElementById('canvas')
     const createGameboard = () => {
-        console.log('hello')
+        console.log(canvas)
     }
     const receiveAttack = () => {
         return currentShip.shipLength
@@ -53,3 +54,26 @@ let newShip = ship(5)
 console.log(newShip)
 let shipSunk = newShip.isSunk()
 console.log(shipSunk)
+
+function drawGrid(row, col) {
+    var even = "",
+        odd = "",
+        grid = "",
+        black = "█",
+        white = " ",
+        i = 0;
+    
+    for (i = 0; i < col; i++) {
+      even += i % 2 ? white : black;
+      odd += i % 2 ? black : white;
+    }
+  
+    for (i = 0; i < row; i++) {
+      grid += i % 2 ? even : odd;
+      grid += "\n";
+    }
+  
+    console.log(grid);
+  }
+  
+  drawGrid(8, 8);

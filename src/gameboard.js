@@ -3,15 +3,19 @@ const calculateShipLength = require('./calculateShipLength.js');
 
 function gameboard(length) {
     let currentShip = ship(length)
-    const createGameboard = () => {
-        console.log('hello')
+    const createGameboard = (row, col) => {
+        for (let i = 0; i < row; i++){
+
+        }
+        for (let i = 0; i < col; i++){
+            
+        }
     }
     const receiveAttack = () => {
-        createGameboard()
         return 'attack'
     }
     return {
-        receiveAttack
+        receiveAttack, createGameboard
     }
 }
 
