@@ -1,5 +1,6 @@
 const ship = require('./ship.js');
 const calculateShipLength = require('./calculateShipLength.js');
+const gameboard = require('./gameboard.js')
 
 test('Ship Length', () => {
     let shipTest = ship(1)
@@ -36,3 +37,8 @@ test('Will return array same length as ship', () => {
     expect(calculateShipLength(5)).toEqual([0, 0, 0, 0, 0])
 })
 
+test('Says Hello', () => {
+    let attack = gameboard()
+    let attackTest = attack.receiveAttack()
+    expect(attackTest).toEqual('attack')
+})
