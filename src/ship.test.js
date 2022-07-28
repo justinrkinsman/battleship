@@ -17,7 +17,7 @@ test('Ship Length 2', () => {
 test('Ship hit', () => {
     let shipTest = ship(5)
     let shipHit = shipTest.hit(4)
-    expect(shipHit).toEqual(0);
+    expect(shipHit).toEqual([0, 0, 0, 0, 1]);
 });
 
 test('Ship sunk', () => {

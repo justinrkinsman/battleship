@@ -3,7 +3,7 @@ function ship(length) {
     return {
         shipLength,
         hit(number) {
-            return shipLength[number]
+            shipLength[number] = 1
         },
         isSunk() {
             return false
