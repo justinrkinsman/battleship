@@ -49,6 +49,6 @@ test('Gameboard Attack', () => {
 
 test('Gameboard Create Grid', () => {
     let grid = gameboard(5)
-    let newGrid = grid.createGameboard(10, 10)
-    expect(newGrid).toEqual(100)
+    let newGrid = grid.createGameboard()
+    expect(newGrid).toEqual({"cols": ["x", "x", "x", "x", "x", "x", "x", "x", "x", "x"], "rows": ["x", "x", "x", "x", "x", "x", "x", "x", "x", "x"]})
 })
