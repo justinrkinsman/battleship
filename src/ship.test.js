@@ -3,20 +3,20 @@ const calculateShipLength = require('./calculateShipLength.js');
 
 test('Ship Length', () => {
     let shipTest = ship(1)
-    let shipLength = shipTest.length
-    expect(shipLength).toEqual(1);
+    let currentShipLength = shipTest.shipLength
+    expect(currentShipLength).toEqual([0]);
 });
 
 test('Ship Length 2', () => {
     let shipTest = ship(2)
-    let shipLength = shipTest.length
-    expect(shipLength).toEqual(2);
+    let shipLength = shipTest.shipLength
+    expect(shipLength).toEqual([0, 0]);
 });
 
 test('Ship hit', () => {
-    let shipTest = ship()
-    let shipHit = shipTest.hit()
-    expect(shipHit).toEqual('took a hit');
+    let shipTest = ship(5)
+    let shipHit = shipTest.hit(4)
+    expect(shipHit).toEqual(0);
 });
 
 test('Ship sunk', () => {

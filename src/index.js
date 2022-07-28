@@ -2,8 +2,8 @@ function ship(length) {
     let shipLength = calculateShipLength(length)
     return {
         shipLength,
-        hit() {
-            return 'took a hit'
+        hit(number) {
+            return shipLength[number]
         },
         isSunk() {
             return false
@@ -14,7 +14,7 @@ function ship(length) {
 function calculateShipLength(array) {
     let arr = []
     for (let i = 0; i < array; i++){
-        arr.push(i)
+        arr.push(0)
     }
     return arr
 }
@@ -28,8 +28,3 @@ function shipNames() {
     destroyer: 2
     }
 }
-
-let newShip = ship(5)
-console.log(newShip)
-let player = shipNames()
-console.log(player.carrier)

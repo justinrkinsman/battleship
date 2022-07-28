@@ -1,8 +1,11 @@
+const calculateShipLength = require('./calculateShipLength.js');
+
 function ship(length){
+    let shipLength = calculateShipLength(length)
     return {
-        length,
-        hit() {
-            return 'took a hit'
+        shipLength,
+        hit(number) {
+            return shipLength[number]
         },
         isSunk() {
             return false
