@@ -68,7 +68,7 @@ let container = document.createElement('div')
 container.setAttribute('id', 'container')
 document.body.appendChild(container)
 
-for (let i = 0; i < 10; i++) {
+( () => {for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++){
         let grid = document.createElement('div');
         grid.className = 'grid';
@@ -76,3 +76,4 @@ for (let i = 0; i < 10; i++) {
         }
         document.getElementById('container').style.gridTemplateColumns = `repeat(${10}, 1fr)`;
     }
+})()
