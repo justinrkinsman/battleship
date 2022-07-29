@@ -111,9 +111,23 @@ let createGrid = (() => {
     }
 })()
 
+let createGrid2 = (() => {
+    let container2 = document.createElement('div')
+    container2.setAttribute('id', 'container2')
+    document.body.appendChild(container2)
+    for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++){
+        let grid = document.createElement('div');
+        grid.className = 'grid';
+        container2.appendChild(grid);
+        }
+        document.getElementById('container2').style.gridTemplateColumns = `repeat(${10}, 1fr)`;
+    }
+})()
+
 document.addEventListener('click', function(e){
     if(e.target && e.target.className === 'grid'){
-        e.target.setAttribute('style', 'background-color: blue')
+        console.log(e.target)
 }
 })
 

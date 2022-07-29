@@ -1,10 +1,15 @@
-#container {
+#container, #container2 {
     display: grid;
-    width: 600px;
-    height: 600px;
-    border: 1px solid black
+    width: 550px;
+    height: 550px;
+    border: 1px solid black;
+    margin: 20px;
 }
 
 .grid {
     border: 1px solid black
+}
+
+body {
+    display: flex;
 }
