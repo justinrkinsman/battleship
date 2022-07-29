@@ -44,7 +44,7 @@ function gameboard(length) {
             rows.push('x')
         }
         for (let i = 0; i < col; i++){
-            cols.push('x')         
+            cols.push('x')
         }
         return {rows, cols}
     }
@@ -64,17 +64,15 @@ console.log(shipSunk)
 let newGame = gameboard(5)
 console.log(newGame.createGameboard())
 
-/*function gameboard(length) {
-    let currentShip = calculateShipLength(length)
-    let alsoCurrentShip = ship(length)
-    let canvas = document.getElementById('canvas')
-    const createGameboard = () => {
-        console.log(canvas)
+let container = document.createElement('div')
+container.setAttribute('id', 'container')
+document.body.appendChild(container)
+
+for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++){
+        let grid = document.createElement('div');
+        grid.className = 'grid';
+        container.appendChild(grid);
+        }
+        document.getElementById('container').style.gridTemplateColumns = `repeat(${10}, 1fr)`;
     }
-    const receiveAttack = () => {
-        return currentShip.shipLength
-    }
-    return {
-        receiveAttack, createGameboard
-    }
-}*/
