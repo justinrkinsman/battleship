@@ -60,9 +60,57 @@ test('Ship placement', () => {
 })
 
 test('Misfire', () => {
-    let ship = gameboard()
-    let attack = ship.receiveAttack(1, 1)
-    expect(attack).toEqual('Miss')
+    let shipLocation = 2
+    let emptySpace = 0
+    const createGrid = {
+        0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    }
+    const receiveAttack = (row, column) => {
+        let newGrid = createGrid
+        if (newGrid[row][column] === emptySpace){
+            return "Miss"
+        }else if (newGrid[row][column] === shipLocation){
+            return "Direct Hit"
+        }
+}
+
+expect(receiveAttack(0, 0)).toEqual('Miss')
+})
+
+test('Direct Hit', () => {
+    let shipLocation = 2
+    let emptySpace = 0
+    const createGrid = {
+        0: [2, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    }
+    const receiveAttack = (row, column) => {
+        let newGrid = createGrid
+        if (newGrid[row][column] === emptySpace){
+            return "Miss"
+        }else if (newGrid[row][column] === shipLocation){
+            return "Direct Hit"
+        }
+}
+
+expect(receiveAttack(0, 0)).toEqual('Direct Hit')
 })
 /*
 const keys = Object.keys(createGrid)
