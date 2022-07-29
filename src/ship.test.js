@@ -47,8 +47,8 @@ test('Gameboard Attack', () => {
     expect(attackTest).toEqual('attack')
 })
 
-test('Gameboard Create Grid', () => {
-    let grid = gameboard(5)
-    let newGrid = grid.createGameboard()
-    expect(newGrid).toEqual({"cols": ["x", "x", "x", "x", "x", "x", "x", "x", "x", "x"], "rows": ["x", "x", "x", "x", "x", "x", "x", "x", "x", "x"]})
+test('Create Gameboard Grid', () => {
+    let newGame = gameboard()
+    let newGrid = newGame.createGrid()
+    expect(newGrid).toEqual({"0": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "1": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "2": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "3": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "4": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "5": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "6": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "7": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "8": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "9": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
 })

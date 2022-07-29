@@ -1,43 +1,29 @@
 const ship = require('./ship.js');
-const calculateShipLength = require('./calculateShipLength.js');
+//const calculateShipLength = require('./calculateShipLength.js');
 
 function gameboard(length) {
     let currentShip = ship(length)
-    let rows = []
-    let cols = []
-    const createGameboard = (row = 10, col = 10) => {
-        for (let i = 0; i < row; i++){
-            rows.push('x')
+    const createGrid = () => {
+        let grid = {
+            0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         }
-        for (let i = 0; i < col; i++){
-            cols.push('x')         
-        }
-        return {rows, cols}
+        return grid
     }
     const receiveAttack = () => {
         return 'attack'
     }
     return {
-        receiveAttack, createGameboard
+        receiveAttack, createGrid
     }
 }
-
-/*
-for (let i = 0; i < gridSize; i++) {
-    for (let j = 0; j < gridSize; j++){
-        let grid = document.createElement('div');
-        grid.className = 'grid';
-        container.appendChild(grid);
-        }
-        document.getElementById('container').style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
-    }
-    const cell = document.querySelectorAll('.grid');
-for (let i = 0; i < cell.length; i++) {
-    cell[i].addEventListener('mouseover', function onmouseover(event) {
-        event.target.style.backgroundColor = 'black';
-    });
-}
-});
-*/
 
 module.exports = gameboard

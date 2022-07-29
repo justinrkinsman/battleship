@@ -37,38 +37,38 @@ function shipNames() {
 
 function gameboard(length) {
     let currentShip = ship(length)
-    let rows = []
-    let cols = []
-    const createGameboard = (row = 10, col = 10) => {
-        for (let i = 0; i < row; i++){
-            rows.push('x')
+    const createGrid = () => {
+        let grid = {
+            0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         }
-        for (let i = 0; i < col; i++){
-            cols.push('x')
-        }
-        return {rows, cols}
+        return grid
     }
     const receiveAttack = () => {
         return 'attack'
     }
     return {
-        receiveAttack, createGameboard
+        receiveAttack, createGrid
     }
 }
 
-let newShip = ship(5)
-console.log(newShip)
-let shipSunk = newShip.isSunk()
-console.log(shipSunk)
+let newGame = gameboard()
+let newGrid = newGame.createGrid()
+console.log(newGrid[1][7])
 
-let newGame = gameboard(5)
-console.log(newGame.createGameboard())
-
-let container = document.createElement('div')
-container.setAttribute('id', 'container')
-document.body.appendChild(container)
-
-( () => {for (let i = 0; i < 10; i++) {
+/*let createGrid = (() => {
+    let container = document.createElement('div')
+    container.setAttribute('id', 'container')
+    document.body.appendChild(container)
+    for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++){
         let grid = document.createElement('div');
         grid.className = 'grid';
@@ -76,4 +76,4 @@ document.body.appendChild(container)
         }
         document.getElementById('container').style.gridTemplateColumns = `repeat(${10}, 1fr)`;
     }
-})()
+})()*/

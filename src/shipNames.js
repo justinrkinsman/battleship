@@ -1,6 +1,6 @@
 function shipNames() {
     return {
-    carrier: 5,
+    aircraftCarrier: 5,
     battleShip: 4,
     cruiser: 3,
     submarine: 3,
