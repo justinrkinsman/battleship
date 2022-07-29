@@ -57,5 +57,5 @@ test('Ship placement', () => {
     let ship = gameboard()
     let placedShip = ship.placeShip()
     let tester = placedShip[1]
-    expect(tester).toEqual(expect.arrayContaining([0]))
+    expect(tester).toEqual(expect.arrayContaining(['X']))
 })
