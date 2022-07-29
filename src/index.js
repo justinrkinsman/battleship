@@ -60,10 +60,16 @@ function gameboard(length) {
     }
 }
 
-let newGame = gameboard()
+//
+//Determines coordinates. This might be usuable in the hit() function
+//
+/*let newGame = gameboard()
 let newGrid = newGame.createGrid()
-console.log(newGrid[1][7])
+console.log(newGrid[1][7])*/
 
+//
+//Creates the grid in the DOM
+//
 /*let createGrid = (() => {
     let container = document.createElement('div')
     container.setAttribute('id', 'container')

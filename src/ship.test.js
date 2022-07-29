@@ -52,3 +52,10 @@ test('Create Gameboard Grid', () => {
     let newGrid = newGame.createGrid()
     expect(newGrid).toEqual({"0": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "1": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "2": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "3": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "4": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "5": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "6": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "7": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "8": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "9": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
 })
+
+test('Ship placement', () => {
+    let ship = gameboard()
+    let placedShip = ship.placeShip()
+    let tester = placedShip[1]
+    expect(tester).toEqual(expect.arrayContaining([0]))
+})

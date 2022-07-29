@@ -21,8 +21,13 @@ function gameboard(length) {
     const receiveAttack = () => {
         return 'attack'
     }
+    const placeShip = () => {
+        let getGrid = gameboard()
+        let grid = getGrid.createGrid()
+        return grid
+    }
     return {
-        receiveAttack, createGrid
+        receiveAttack, createGrid, placeShip
     }
 }
 
