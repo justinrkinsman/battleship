@@ -37,8 +37,7 @@ function shipNames() {
 
 function gameboard(length) {
     let currentShip = ship(length)
-    const createGrid = () => {
-        let grid = {
+    const createGrid = {
             0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -50,34 +49,16 @@ function gameboard(length) {
             8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         }
-        return grid
-    }
     const receiveAttack = () => {
         return 'attack'
     }
-    const getGridFunction = () => {
-        let getGrid = gameboard()
-        let grid = getGrid.createGrid()
-        return grid
-    }
-    let grid = {
-        0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],}
     const placeShip = () => {
-        const keys = Object.keys(grid)
+        const keys = Object.keys(createGrid)
         const prop = keys[Math.floor(Math.random() * keys.length)]
-        const keys2 = Object.keys(grid[prop])
+        const keys2 = Object.keys(createGrid[prop])
         const prop2 = keys2[Math.floor(Math.random() * keys2.length)]
-        grid[prop][prop2] = 'X'
-        return grid
+        createGrid[prop][prop2] = '2'
+        return createGrid
     }
     return {
         receiveAttack, createGrid, placeShip
@@ -85,7 +66,7 @@ function gameboard(length) {
 }
 
 
-let gameboardTest = gameboard()
+/*let gameboardTest = gameboard()
 document.addEventListener('keyup', () => {
 
     let placeShipTest = gameboardTest.placeShip()
@@ -98,7 +79,7 @@ console.log(placeShipTest[prop]);
 
 const keys2 = Object.keys(placeShipTest[prop])
 const prop2 = keys2[Math.floor(Math.random() * keys2.length)]
-placeShipTest[prop][prop2] = 'X'*/
+placeShipTest[prop][prop2] = 'X'
 console.log(placeShipTest)
 })
 

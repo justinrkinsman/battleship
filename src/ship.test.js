@@ -49,13 +49,45 @@ test('Gameboard Attack', () => {
 
 test('Create Gameboard Grid', () => {
     let newGame = gameboard()
-    let newGrid = newGame.createGrid()
-    expect(newGrid).toEqual({"0": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "1": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "2": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "3": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "4": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "5": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "6": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "7": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "8": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "9": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
+    let createThisGrid = newGame.createGrid
+    expect(createThisGrid).toEqual({"0": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "1": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "2": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "3": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "4": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "5": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "6": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "7": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "8": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "9": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
 })
 
 test('Ship placement', () => {
     let ship = gameboard()
-    let placedShip = ship.placeShip()
-    let tester = placedShip[1]
-    expect(tester).toEqual(expect.arrayContaining(['X']))
+    let grid = ship.createGrid
+    const keys = Object.keys(grid)
+    const prop = keys[Math.floor(Math.random() * keys.length)]
+    const keys2 = Object.keys(grid[prop])
+    const prop2 = keys2[Math.floor(Math.random() * keys2.length)]
+    grid[prop][prop2] = 2
+    let grid2 = grid[prop]
+    expect(grid2).toEqual(expect.arrayContaining([2]))
+
+/*
+const keys = Object.keys(createGrid)
+        const prop = keys[Math.floor(Math.random() * keys.length)]
+        const keys2 = Object.keys(createGrid[prop])
+        const prop2 = keys2[Math.floor(Math.random() * keys2.length)]
+        createGrid[prop][prop2] = '2'
+        return createGrid
+*/
+
+    /*
+let gameboardTest = gameboard()
+let placeShipTest = gameboardTest.placeShip()
+document.addEventListener('keyup', () => {
+
+///
+//Select random space on grid
+///
+const keys = Object.keys(placeShipTest)
+const prop = keys[Math.floor(Math.random() * keys.length)]
+console.log(placeShipTest[prop]);
+
+const keys2 = Object.keys(placeShipTest[prop])
+const prop2 = keys2[Math.floor(Math.random() * keys2.length)]
+placeShipTest[prop][prop2] = 'X'
+console.log(placeShipTest)
+    */
 })

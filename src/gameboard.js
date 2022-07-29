@@ -3,8 +3,7 @@ const ship = require('./ship.js');
 
 function gameboard(length) {
     let currentShip = ship(length)
-    const createGrid = () => {
-        let grid = {
+    const createGrid = {
             0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -16,15 +15,16 @@ function gameboard(length) {
             8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         }
-        return grid
-    }
     const receiveAttack = () => {
         return 'attack'
     }
     const placeShip = () => {
-        let getGrid = gameboard()
-        let grid = getGrid.createGrid()
-        return grid
+        const keys = Object.keys(createGrid)
+        const prop = keys[Math.floor(Math.random() * keys.length)]
+        const keys2 = Object.keys(createGrid[prop])
+        const prop2 = keys2[Math.floor(Math.random() * keys2.length)]
+        createGrid[prop][prop2] = '2'
+        return createGrid
     }
     return {
         receiveAttack, createGrid, placeShip
