@@ -41,12 +41,6 @@ test('Will return array same length as ship', () => {
     expect(calculateShipLength(5)).toEqual([0, 0, 0, 0, 0])
 })
 
-test('Gameboard Attack', () => {
-    let attack = gameboard(5)
-    let attackTest = attack.receiveAttack()
-    expect(attackTest).toEqual('attack')
-})
-
 test('Create Gameboard Grid', () => {
     let newGame = gameboard()
     let createThisGrid = newGame.createGrid
@@ -63,7 +57,13 @@ test('Ship placement', () => {
     grid[prop][prop2] = 2
     let grid2 = grid[prop]
     expect(grid2).toEqual(expect.arrayContaining([2]))
+})
 
+test('Misfire', () => {
+    let ship = gameboard()
+    let attack = ship.receiveAttack(1, 1)
+    expect(attack).toEqual('Miss')
+})
 /*
 const keys = Object.keys(createGrid)
         const prop = keys[Math.floor(Math.random() * keys.length)]
@@ -90,4 +90,3 @@ const prop2 = keys2[Math.floor(Math.random() * keys2.length)]
 placeShipTest[prop][prop2] = 'X'
 console.log(placeShipTest)
     */
-})

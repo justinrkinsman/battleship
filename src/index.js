@@ -62,6 +62,7 @@ function gameboard(length) {
         const keys2 = Object.keys(createGrid[prop])
         const prop2 = keys2[Math.floor(Math.random() * keys2.length)]
         createGrid[prop][prop2] = shipLocation
+        createGrid[prop][prop2 + 1] = shipLocation
         return createGrid
     }
     return {
@@ -77,7 +78,7 @@ document.addEventListener('keyup', () => {
 ///
 //Select random space on grid
 ///
-/*const keys = Object.keys(placeShipTest)
+const keys = Object.keys(placeShipTest)
 const prop = keys[Math.floor(Math.random() * keys.length)]
 console.log(placeShipTest[prop]);
 
