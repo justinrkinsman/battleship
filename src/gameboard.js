@@ -3,6 +3,8 @@ const ship = require('./ship.js');
 
 function gameboard(length) {
     let currentShip = ship(length)
+    let shipLocation = 2
+
     const createGrid = {
             0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -23,7 +25,7 @@ function gameboard(length) {
         const prop = keys[Math.floor(Math.random() * keys.length)]
         const keys2 = Object.keys(createGrid[prop])
         const prop2 = keys2[Math.floor(Math.random() * keys2.length)]
-        createGrid[prop][prop2] = '2'
+        createGrid[prop][prop2] = shipLocation
         return createGrid
     }
     return {
