@@ -53,8 +53,18 @@ function gameboard(length) {
             8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         }
-    const receiveAttack = () => {
-        return 'attack'
+    const receiveAttack = (row, column) => {
+        let location = placeShip()
+        let newGrid = createGrid
+        if (newGrid[row][column] === emptySpace){
+            newGrid[row][column] = miss
+            console.log(newGrid)
+            return "Miss"
+        }else if (newGrid[row][column] === shipLocation){
+            newGrid[row][column] = hit
+            console.log(newGrid)
+            return "Direct Hit"
+        }
     }
     const placeShip = () => {
         const keys = Object.keys(createGrid)
@@ -71,26 +81,15 @@ function gameboard(length) {
 }
 
 
-/*let gameboardTest = gameboard()
-document.addEventListener('keyup', () => {
-
-    let placeShipTest = gameboardTest.placeShip()
-///
-//Select random space on grid
-///
-const keys = Object.keys(placeShipTest)
-const prop = keys[Math.floor(Math.random() * keys.length)]
-console.log(placeShipTest[prop]);
-
-const keys2 = Object.keys(placeShipTest[prop])
-const prop2 = keys2[Math.floor(Math.random() * keys2.length)]
-placeShipTest[prop][prop2] = 'X'
-console.log(placeShipTest)
-})
-
 //
 //Determines coordinates. This might be usuable in the hit() function
 //
+
+/*document.addEventListener('keypress', () => {
+    let play = gameboard()
+    console.log(play.receiveAttack(0, 0))
+})*/
+
 /*let newGame = gameboard()
 let newGrid = newGame.createGrid()
 console.log(newGrid[1][7])*/
@@ -98,7 +97,7 @@ console.log(newGrid[1][7])*/
 //
 //Creates the grid in the DOM
 //
-/*let createGrid = (() => {
+let createGrid = (() => {
     let container = document.createElement('div')
     container.setAttribute('id', 'container')
     document.body.appendChild(container)
@@ -110,7 +109,14 @@ console.log(newGrid[1][7])*/
         }
         document.getElementById('container').style.gridTemplateColumns = `repeat(${10}, 1fr)`;
     }
-})()*/
+})()
+
+document.addEventListener('click', function(e){
+    if(e.target && e.target.className === 'grid'){
+        e.target.setAttribute('style', 'background-color: blue')
+}
+})
+
 
 /*
 0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

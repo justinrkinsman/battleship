@@ -30,8 +30,10 @@ function gameboard(length) {
         let location = placeShip()
         let newGrid = createGrid
         if (newGrid[row][column] === emptySpace){
+            newGrid[row][column] = miss
             return "Miss"
         }else if (newGrid[row][column] === shipLocation){
+            newGrid[row][column] = hit
             return "Direct Hit"
         }
     }

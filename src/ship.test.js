@@ -81,8 +81,7 @@ test('Misfire', () => {
         }else if (newGrid[row][column] === shipLocation){
             return "Direct Hit"
         }
-}
-
+    }
 expect(receiveAttack(0, 0)).toEqual('Miss')
 })
 
@@ -109,7 +108,6 @@ test('Direct Hit', () => {
             return "Direct Hit"
         }
 }
-
 expect(receiveAttack(0, 0)).toEqual('Direct Hit')
 })
 /*
