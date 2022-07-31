@@ -110,6 +110,7 @@ test('Direct Hit', () => {
 }
 expect(receiveAttack(0, 0)).toEqual('Direct Hit')
 })
+
 /*
 const keys = Object.keys(createGrid)
         const prop = keys[Math.floor(Math.random() * keys.length)]

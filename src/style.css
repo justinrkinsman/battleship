@@ -6,7 +6,7 @@
     margin: 20px;
 }
 
-.grid {
+.grid, [class^="grid"] {
     border: 1px solid black
 }
 

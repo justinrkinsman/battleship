@@ -118,7 +118,7 @@ let createGrid2 = (() => {
     for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++){
         let grid = document.createElement('div');
-        grid.className = 'grid';
+        grid.className = `grid${i}${j}`
         container2.appendChild(grid);
         }
         document.getElementById('container2').style.gridTemplateColumns = `repeat(${10}, 1fr)`;
@@ -127,7 +127,11 @@ let createGrid2 = (() => {
 
 document.addEventListener('click', function(e){
     if(e.target && e.target.className === 'grid'){
-        console.log(e.target)
+        let game = gameboard()
+        game.placeShip()
+        let hit = game.createGrid
+        game.receiveAttack(    )
+        console.log(hit)
 }
 })
 
