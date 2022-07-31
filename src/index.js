@@ -104,7 +104,8 @@ let createGrid = (() => {
     for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++){
         let grid = document.createElement('div');
-        grid.className = 'grid';
+        grid.className = `grid`;
+        grid.setAttribute('dataset', `${i}, ${j}`)
         container.appendChild(grid);
         }
         document.getElementById('container').style.gridTemplateColumns = `repeat(${10}, 1fr)`;
@@ -118,7 +119,8 @@ let createGrid2 = (() => {
     for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++){
         let grid = document.createElement('div');
-        grid.className = `grid${i}${j}`
+        grid.className = `grid`
+        grid.setAttribute('data', `${i}, ${j}`)
         container2.appendChild(grid);
         }
         document.getElementById('container2').style.gridTemplateColumns = `repeat(${10}, 1fr)`;
@@ -130,7 +132,10 @@ document.addEventListener('click', function(e){
         let game = gameboard()
         game.placeShip()
         let hit = game.createGrid
-        game.receiveAttack(    )
+        let coordinates = e.target.getAttribute('dataset')
+        let coordinatesRow = coordinates.charAt(0)
+        let coordinatesCol = coordinates.slice(-1)
+        game.receiveAttack(coordinatesRow, coordinatesCol)
         console.log(hit)
 }
 })
