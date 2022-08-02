@@ -77,11 +77,15 @@ function gameboard(length) {
             newGrid[row][column] = miss
             console.log('miss')
             console.log(newGrid)
+            let item = document.getElementById(`${row}, ${column}`)
+            populateGrid(item.id, 'Miss')
             return newGrid
         }else if (newGrid[row][column] === shipLocation){
             newGrid[row][column] = hit
             console.log('direct hit')
             console.log(newGrid)
+            let item = document.getElementById(`${row}, ${column}`)
+            populateGrid(item.id, 'Hit')
             return newGrid
         }
     }
@@ -101,7 +105,7 @@ let createNewGrid = (() => {
     for (let j = 0; j < 10; j++){
         let grid = document.createElement('div');
         grid.className = `grid`;
-        grid.setAttribute('dataset', `${i}, ${j}`)
+        grid.setAttribute('id', `${i}, ${j}`)
         container.appendChild(grid);
         }
         document.getElementById('container').style.gridTemplateColumns = `repeat(${10}, 1fr)`;
@@ -116,12 +120,17 @@ let createNewGrid2 = (() => {
     for (let j = 0; j < 10; j++){
         let grid = document.createElement('div');
         grid.className = `grid`
-        grid.setAttribute('data', `${i}, ${j}`)
+        grid.setAttribute('id', `${i}, ${j}`)
         container2.appendChild(grid);
         }
         document.getElementById('container2').style.gridTemplateColumns = `repeat(${10}, 1fr)`;
     }
 })()
+
+const populateGrid = (coordinates, result) => {
+    let item = document.getElementById(coordinates)
+    item.innerText = result
+}
 
 const game = gameboard()
 game.placeShip()
@@ -131,12 +140,10 @@ document.addEventListener('click', function(e){
     if(e.target && e.target.className === 'grid'){
         //game.placeShip()
         //let hit = game.placeShip()
-        let coordinates = e.target.getAttribute('dataset')
+        let coordinates = e.target.id
         let coordinatesRow = coordinates.charAt(0)
         let coordinatesCol = coordinates.slice(-1)
         game.receiveAttack(coordinatesRow, coordinatesCol)
-        
-        //console.log(hit)
 }
 })
 
