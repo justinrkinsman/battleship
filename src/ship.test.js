@@ -111,7 +111,7 @@ test('Direct Hit', () => {
 expect(receiveAttack(0, 0)).toEqual('Direct Hit')
 })
 
-test('Ship placement', () => {
+test('Vertical ship placement', () => {
     const createGrid = {
         0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -124,11 +124,52 @@ test('Ship placement', () => {
         8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     }
-    const placeShip = (row, column) => {
-        createGrid[row][column] = 2
+    const ships = {
+        carrier: 5,
+        battleship: 4,
+        cruiser: 3,
+        submarine: 3,
+        destroyer: 2
+    }
+    const placeShip = (shipName, row, column) => {
+        let newShip = ships[shipName]
+        for (let i = 0; i < newShip; i++){
+            let newRow = row + i
+            createGrid[newRow][column] = 2
+        }
         return createGrid
     }
-    expect(placeShip(0, 0)).toEqual({"0": [2, 0, 0, 0, 0, 0, 0, 0, 0, 0], "1": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "2": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "3": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "4": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "5": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "6": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "7": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "8": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "9": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
+    expect(placeShip('battleship', 1, 1)).toEqual({"0": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "1": [0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "2": [0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "3": [0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "4": [0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "5": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "6": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "7": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "8": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "9": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
+})
+
+test('Horizontal ship placement', () => {
+    const createGrid = {
+        0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    }
+    const ships = {
+        carrier: 5,
+        battleship: 4,
+        cruiser: 3,
+        submarine: 3,
+        destroyer: 2
+    }
+    const placeShip = (shipName, row, column) => {
+        let newShip = ships[shipName]
+        for (let i = row; i < newShip; i++){
+            createGrid[i][column] = 2
+        }
+        return createGrid
+    }
+    expect(placeShip('battleship', 1, 1)).toEqual({"0": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "1": [0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "2": [0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "3": [0, 2, 0, 0, 0, 0, 0, 0, 0, 0], "4": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "5": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "6": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "7": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "8": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "9": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
 })
 
 /*

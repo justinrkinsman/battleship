@@ -31,7 +31,7 @@ function calculateShipLength(array) {
     return arr
 }
 
-const shipNames = {
+const ships = {
     carrier: 5,
     battleShip: 4,
     cruiser: 3,
@@ -172,3 +172,15 @@ document.addEventListener('click', function(e){
             8: ['i1', 'i2', 'i3', 'i4', 'i5', 'i6', 'i7', 'i8', 'i9', 'i10'],
             9: ['j1', 'j2', 'j3', 'j4', 'j5', 'j6', 'j7', 'j8', 'j9', 'j10'],
 */
+const placeShipHere = (shipName, row, column) => {
+    //createGrid[row][column] = 2
+    let newShip = ships[shipName]
+    ///Vertical placement
+    for (let i = 0; i < newShip; i++){
+        let newRow = row + i
+        createGrid[newRow][column] = 2
+    }
+    console.log(createGrid)
+}
+
+placeShipHere('destroyer', 8, 9)
