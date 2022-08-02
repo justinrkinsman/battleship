@@ -58,14 +58,31 @@ function gameboard(length) {
     let emptySpace = 0
     let miss = 3
     let hit = 1
-    const placeShip = () => {
-        const keys = Object.keys(createGrid)
+    const placeShip = (shipName, row, column, orientation = 'vertical') => {
+        let newShip = ships[shipName]
+        //vertical placement
+        if (orientation === "horizontal") {
+            for (let i = 0; i < newShip; i++){
+                let newColumn = column + i
+                createGrid[row][newColumn] = 2
+            }
+            }else{
+            for (let i = 0; i < newShip; i++){
+                let newRow = row + i
+                createGrid[newRow][column] = 2
+            }
+            }
+        //horizontal placement
+        /*for (let i = 0; i < newShip; i++){
+            let newColumn = column + i
+            createGrid[row][newColumn] = 2
+        }*/
+        //random placement
+        /*const keys = Object.keys(createGrid)
         const prop = keys[Math.floor(Math.random() * keys.length)]
         const keys2 = Object.keys(createGrid[prop])
         const prop2 = keys2[Math.floor(Math.random() * keys2.length)]
-        //let newGrid = createGrid
-        createGrid[prop][prop2] = shipLocation
-        //createGrid[prop][prop2 + 1] = shipLocation
+        createGrid[prop][prop2] = shipLocation*/
         return createGrid
     }
         let newGrid = createGrid
@@ -133,13 +150,15 @@ const populateGrid = (coordinates, result) => {
 }
 
 const game = gameboard()
-game.placeShip()
+
+
+game.placeShip('destroyer', 0, 0)
+game.placeShip('battleShip', 2, 2)
+game.placeShip('carrier', 1, 3)
+
 
 document.addEventListener('click', function(e){
-    //let game = gameboard()
     if(e.target && e.target.className === 'grid'){
-        //game.placeShip()
-        //let hit = game.placeShip()
         let coordinates = e.target.id
         let coordinatesRow = coordinates.charAt(0)
         let coordinatesCol = coordinates.slice(-1)
@@ -172,15 +191,3 @@ document.addEventListener('click', function(e){
             8: ['i1', 'i2', 'i3', 'i4', 'i5', 'i6', 'i7', 'i8', 'i9', 'i10'],
             9: ['j1', 'j2', 'j3', 'j4', 'j5', 'j6', 'j7', 'j8', 'j9', 'j10'],
 */
-const placeShipHere = (shipName, row, column) => {
-    //createGrid[row][column] = 2
-    let newShip = ships[shipName]
-    ///Vertical placement
-    for (let i = 0; i < newShip; i++){
-        let newRow = row + i
-        createGrid[newRow][column] = 2
-    }
-    console.log(createGrid)
-}
-
-placeShipHere('destroyer', 8, 9)
