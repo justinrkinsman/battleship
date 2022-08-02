@@ -15,12 +15,6 @@ test('Ship Length 2', () => {
     expect(shipLength).toEqual([0, 0]);
 });
 
-test('Ship hit', () => {
-    let shipTest = ship(5)
-    let shipHit = shipTest.hit(4)
-    expect(shipHit).toEqual([0, 0, 0, 0, 1]);
-});
-
 test('Ship sunk', () => {
     let shipTest = ship(5)
     shipTest.hit(0)
@@ -210,6 +204,12 @@ test('Change ship orientation', () => {
     }
     expect(placeShip('destroyer', 0, 0, 'horizontal')).toEqual({"0": [2, 2, 0, 0, 0, 0, 0, 0, 0, 0], "1": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "2": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "3": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "4": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "5": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "6": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "7": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "8": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "9": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
 })
+
+test('Ship hit', () => {
+    let testShip = ship(5)
+    expect(testShip.hit(2)).toEqual([0, 0, 1, 0, 0])
+})
+
 
 /*
 const keys = Object.keys(createGrid)

@@ -4,6 +4,8 @@
     console.log(game.placeShip())
 })*/
 
+//const { ContextExclusionPlugin } = require("webpack")
+
 function ship(length){
     let shipLength = calculateShipLength(length)
     return {
@@ -191,3 +193,25 @@ document.addEventListener('click', function(e){
             8: ['i1', 'i2', 'i3', 'i4', 'i5', 'i6', 'i7', 'i8', 'i9', 'i10'],
             9: ['j1', 'j2', 'j3', 'j4', 'j5', 'j6', 'j7', 'j8', 'j9', 'j10'],
 */
+
+/*let carrierOne = ship(5)
+let battleShipOne = ship(4)
+let submarineOne = ship(3)
+let cruiserOne = ship(3)
+let destroyerOne = ship(2)
+console.log(carrierOne)
+console.log(battleShipOne)
+console.log(submarineOne)
+console.log(cruiserOne)
+console.log(destroyerOne)
+
+let carrierTwo = ship(5)
+let battleShipTwo = ship(4)
+let submarineTwo = ship(3)
+let cruiserTwo = ship(3)
+let destroyerTwo = ship(2)
+console.log(carrierTwo)
+console.log(battleShipTwo)
+console.log(submarineTwo)
+console.log(cruiserTwo)
+console.log(destroyerTwo)*/
