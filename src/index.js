@@ -75,14 +75,12 @@ function gameboard(length) {
         const receiveAttack = (row, column) => {
         if (newGrid[row][column] === emptySpace){
             newGrid[row][column] = miss
-            console.log('miss')
             console.log(newGrid)
             let item = document.getElementById(`${row}, ${column}`)
             populateGrid(item.id, 'Miss')
             return newGrid
         }else if (newGrid[row][column] === shipLocation){
             newGrid[row][column] = hit
-            console.log('direct hit')
             console.log(newGrid)
             let item = document.getElementById(`${row}, ${column}`)
             populateGrid(item.id, 'Hit')
@@ -129,7 +127,12 @@ let createNewGrid2 = (() => {
 
 const populateGrid = (coordinates, result) => {
     let item = document.getElementById(coordinates)
-    item.innerText = result
+    item.innerText = 'X'
+    if (result == 'Hit'){
+        item.style.backgroundColor = 'red'
+    } else {
+        item.style.backgroundColor = 'blue'
+    }
 }
 
 const game = gameboard()
