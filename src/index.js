@@ -1,3 +1,9 @@
+window.addEventListener('load', (event) => {
+    let game = gameboard()
+    game.placeShip()
+    console.log(game.placeShip())
+})
+
 function ship(length){
     let shipLength = calculateShipLength(length)
     return {
@@ -36,12 +42,12 @@ function shipNames() {
 }
 
 function gameboard(length) {
-    let currentShip = ship(length)
+    //let currentShip = ship(length)
     let shipLocation = 2
     let emptySpace = 0
     let miss = 3
     let hit = 1
-    const createGrid = {
+    let createGrid = {
             0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -53,51 +59,39 @@ function gameboard(length) {
             8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         }
-    const receiveAttack = (row, column) => {
-        let location = placeShip()
-        let newGrid = createGrid
-        if (newGrid[row][column] === emptySpace){
-            newGrid[row][column] = miss
-            console.log(newGrid)
-            return "Miss"
-        }else if (newGrid[row][column] === shipLocation){
-            newGrid[row][column] = hit
-            console.log(newGrid)
-            return "Direct Hit"
-        }
-    }
-    const placeShip = () => {
+        const placeShip = () => {
         const keys = Object.keys(createGrid)
         const prop = keys[Math.floor(Math.random() * keys.length)]
         const keys2 = Object.keys(createGrid[prop])
         const prop2 = keys2[Math.floor(Math.random() * keys2.length)]
-        createGrid[prop][prop2] = shipLocation
-        createGrid[prop][prop2 + 1] = shipLocation
-        return createGrid
+        let newGrid = createGrid
+        newGrid[prop][prop2] = shipLocation
+        //createGrid[prop][prop2 + 1] = shipLocation
+        return newGrid
+        }
+        let newGrid = createGrid
+        const receiveAttack = (row, column) => {
+        if (newGrid[row][column] === emptySpace){
+            newGrid[row][column] = miss
+            console.log('miss')
+            console.log(newGrid)
+            return newGrid
+        }else if (newGrid[row][column] === shipLocation){
+            newGrid[row][column] = hit
+            console.log('direct hit')
+            console.log(newGrid)
+            return newGrid
+        }
     }
     return {
         receiveAttack, createGrid, placeShip
     }
 }
 
-
-//
-//Determines coordinates. This might be usuable in the hit() function
-//
-
-/*document.addEventListener('keypress', () => {
-    let play = gameboard()
-    console.log(play.receiveAttack(0, 0))
-})*/
-
-/*let newGame = gameboard()
-let newGrid = newGame.createGrid()
-console.log(newGrid[1][7])*/
-
 //
 //Creates the grid in the DOM
 //
-let createGrid = (() => {
+let createNewGrid = (() => {
     let container = document.createElement('div')
     container.setAttribute('id', 'container')
     document.body.appendChild(container)
@@ -112,7 +106,7 @@ let createGrid = (() => {
     }
 })()
 
-let createGrid2 = (() => {
+let createNewGrid2 = (() => {
     let container2 = document.createElement('div')
     container2.setAttribute('id', 'container2')
     document.body.appendChild(container2)
@@ -127,19 +121,21 @@ let createGrid2 = (() => {
     }
 })()
 
+let game = gameboard()
+
 document.addEventListener('click', function(e){
+    //let game = gameboard()
     if(e.target && e.target.className === 'grid'){
-        let game = gameboard()
-        game.placeShip()
-        let hit = game.createGrid
+        //game.placeShip()
+        //let hit = game.placeShip()
         let coordinates = e.target.getAttribute('dataset')
         let coordinatesRow = coordinates.charAt(0)
         let coordinatesCol = coordinates.slice(-1)
         game.receiveAttack(coordinatesRow, coordinatesCol)
-        console.log(hit)
+        
+        //console.log(hit)
 }
 })
-
 
 /*
 0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
