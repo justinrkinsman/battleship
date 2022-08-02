@@ -1,8 +1,8 @@
-window.addEventListener('load', (event) => {
+/*window.addEventListener('load', (event) => {
     let game = gameboard()
     game.placeShip()
     console.log(game.placeShip())
-})
+})*/
 
 function ship(length){
     let shipLength = calculateShipLength(length)
@@ -31,14 +31,12 @@ function calculateShipLength(array) {
     return arr
 }
 
-function shipNames() {
-    return {
+const shipNames = {
     carrier: 5,
     battleShip: 4,
     cruiser: 3,
     submarine: 3,
     destroyer: 2
-    }
 }
 
 let createGrid = {
@@ -60,8 +58,7 @@ function gameboard(length) {
     let emptySpace = 0
     let miss = 3
     let hit = 1
-    
-        const placeShip = () => {
+    const placeShip = () => {
         const keys = Object.keys(createGrid)
         const prop = keys[Math.floor(Math.random() * keys.length)]
         const keys2 = Object.keys(createGrid[prop])
@@ -70,9 +67,9 @@ function gameboard(length) {
         createGrid[prop][prop2] = shipLocation
         //createGrid[prop][prop2 + 1] = shipLocation
         return createGrid
-        }
+    }
         let newGrid = createGrid
-        const receiveAttack = (row, column) => {
+    const receiveAttack = (row, column) => {
         if (newGrid[row][column] === emptySpace){
             newGrid[row][column] = miss
             console.log(newGrid)

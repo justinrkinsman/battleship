@@ -1,6 +1,7 @@
 const ship = require('./ship.js');
 const calculateShipLength = require('./calculateShipLength.js');
 const gameboard = require('./gameboard.js')
+//const placeShip = require('./placeship.js')
 
 test('Ship Length', () => {
     let shipTest = ship(1)
@@ -101,14 +102,33 @@ test('Direct Hit', () => {
         9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     }
     const receiveAttack = (row, column) => {
-        let newGrid = createGrid
-        if (newGrid[row][column] === emptySpace){
+        if (createGrid[row][column] === emptySpace){
             return "Miss"
-        }else if (newGrid[row][column] === shipLocation){
+        }else if (createGrid[row][column] === shipLocation){
             return "Direct Hit"
         }
 }
 expect(receiveAttack(0, 0)).toEqual('Direct Hit')
+})
+
+test('Ship placement', () => {
+    const createGrid = {
+        0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    }
+    const placeShip = (row, column) => {
+        createGrid[row][column] = 2
+        return createGrid
+    }
+    expect(placeShip(0, 0)).toEqual({"0": [2, 0, 0, 0, 0, 0, 0, 0, 0, 0], "1": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "2": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "3": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "4": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "5": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "6": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "7": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "8": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "9": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
 })
 
 /*
