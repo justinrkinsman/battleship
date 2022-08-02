@@ -41,33 +41,35 @@ function shipNames() {
     }
 }
 
+let createGrid = {
+    0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+}
+
 function gameboard(length) {
     //let currentShip = ship(length)
     let shipLocation = 2
     let emptySpace = 0
     let miss = 3
     let hit = 1
-    let createGrid = {
-            0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        }
+    
         const placeShip = () => {
         const keys = Object.keys(createGrid)
         const prop = keys[Math.floor(Math.random() * keys.length)]
         const keys2 = Object.keys(createGrid[prop])
         const prop2 = keys2[Math.floor(Math.random() * keys2.length)]
-        let newGrid = createGrid
-        newGrid[prop][prop2] = shipLocation
+        //let newGrid = createGrid
+        createGrid[prop][prop2] = shipLocation
         //createGrid[prop][prop2 + 1] = shipLocation
-        return newGrid
+        return createGrid
         }
         let newGrid = createGrid
         const receiveAttack = (row, column) => {
@@ -121,7 +123,8 @@ let createNewGrid2 = (() => {
     }
 })()
 
-let game = gameboard()
+const game = gameboard()
+game.placeShip()
 
 document.addEventListener('click', function(e){
     //let game = gameboard()
