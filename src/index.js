@@ -53,11 +53,28 @@ let createGrid = {
     9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 }
 
-const playerOneCarrier = ship('carrier', 5)
+/*const playerOneCarrier = ship('carrier', 5)
 const playerOneBattleship = ship('battleship', 4)
 const playerOneSubmarine = ship('submarine', 3)
 const playerOneCruiser = ship('cruiser', 3)
-const playerOneDestroyer = ship('destroyer', 2)
+const playerOneDestroyer = ship('destroyer', 2)*/
+
+const carrier0 = ship('carrier0', 5)
+const battleship1 = ship('battleship1', 4)
+const submarine2 = ship('submarine2', 3)
+const cruiser3 = ship('cruiser3', 3)
+const destroyer4 = ship('destroyer4', 2)
+
+const playerOneShips = [
+    {"name": carrier0},
+    {"name": battleship1},
+    {"name": submarine2},
+    {"name": cruiser3},
+    {"name": destroyer4}
+]
+
+//let result = carrier.find(item => item.name === carrier)
+//console.log(carrier)
 
 function gameboard() {
     let shipLocation = 2
@@ -100,7 +117,8 @@ function gameboard() {
             //console.log(newGrid)
             let item = document.getElementById(`${row}, ${column}`)
             let shipName = item.getAttribute('data-shipname')
-            console.log(shipName)
+            let shipArray = getShipArray(shipName)
+            console.log(shipArray)
             populateGrid(item.id, 'Hit')
             return newGrid
         }
@@ -116,6 +134,11 @@ function gameboard() {
     return {
         receiveAttack, placeShip, allShipsSunk
     }
+}
+
+const getShipArray = (shipName) => {
+    let index = shipName.slice(-1)
+    return playerOneShips[index].name
 }
 
 const shipLocator = (coordinates, shipName) => {
@@ -168,11 +191,17 @@ const populateGrid = (coordinates, result) => {
 
 const game = gameboard()
 
-game.placeShip(playerOneDestroyer, 0, 0)
+/*game.placeShip(playerOneDestroyer, 0, 0)
 game.placeShip(playerOneBattleship, 2, 2)
 game.placeShip(playerOneCarrier, 1, 3)
 game.placeShip(playerOneSubmarine, 7, 6, 'horizontal')
-game.placeShip(playerOneCruiser, 9, 0, 'horizontal')
+game.placeShip(playerOneCruiser, 9, 0, 'horizontal')*/
+
+game.placeShip(destroyer4, 0, 0)
+game.placeShip(battleship1, 2, 2)
+game.placeShip(carrier0, 1, 3)
+game.placeShip(submarine2, 7, 6, 'horizontal')
+game.placeShip(cruiser3, 9, 0, 'horizontal')
 
 document.addEventListener('click', function(e){
     if(e.target && e.target.className === 'grid'){
@@ -181,7 +210,7 @@ document.addEventListener('click', function(e){
         let coordinatesCol = coordinates.slice(-1)
         game.receiveAttack(coordinatesRow, coordinatesCol)
         game.allShipsSunk()
-        console.log(playerOneCarrier.lengthArray)
+        //console.log(playerOneCarrier.lengthArray)
         //playerOneCarrier.isSunk()
 }
 })
