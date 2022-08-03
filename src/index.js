@@ -118,7 +118,9 @@ function gameboard() {
             let item = document.getElementById(`${row}, ${column}`)
             let shipName = item.getAttribute('data-shipname')
             let shipArray = getShipArray(shipName)
-            console.log(shipArray)
+            let shipIndex = item.getAttribute('data-index')
+            //shipArray.lengthArray.splice(shipIndex, 1, 1)
+            shipArray.hit(shipIndex)
             populateGrid(item.id, 'Hit')
             return newGrid
         }
@@ -145,7 +147,6 @@ const shipLocator = (coordinates, shipName, index) => {
     let cell = document.getElementById(coordinates)
     cell.setAttribute('data-shipName', shipName.name)
     cell.setAttribute('data-index', index)
-    //cell.setAttribute('data-index', )
 }
 
 //
@@ -212,6 +213,7 @@ document.addEventListener('click', function(e){
         let coordinatesCol = coordinates.slice(-1)
         game.receiveAttack(coordinatesRow, coordinatesCol)
         game.allShipsSunk()
+        console.log(playerOneShips)
         //console.log(playerOneCarrier.lengthArray)
         //playerOneCarrier.isSunk()
 }
