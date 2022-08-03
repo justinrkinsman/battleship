@@ -1,7 +1,7 @@
 #container, #container2 {
     display: grid;
-    width: 550px;
-    height: 550px;
+    width: 500px;
+    height: 500px;
     border: 1px solid black;
     margin: 20px;
 }
