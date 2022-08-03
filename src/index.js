@@ -12,23 +12,36 @@ function ship(name, length){
         lengthArray: calculateShipLength(length),
         hit(number) {
             this.lengthArray[number] = 1
-            console.log(this.lengthArray)       ///The proper ship length is not being used in these functions
+            return this.lengthArray
         },
         isSunk() {
-            if (shipLength.includes('1')){
+            if (this.lengthArray.includes(0)){
                 console.log('Float')
+            }else if (!this.lengthArray.includes(0)){
+                console.log('Sunk')
             }
-            console.log('Sunk')
         }
     }
 }
 
 let playerOneCarrier = ship('carrier', 5)
 console.log(playerOneCarrier.lengthArray)
-playerOneCarrier.hit(3)
+playerOneCarrier.isSunk()
+playerOneCarrier.hit(0)
 console.log(playerOneCarrier.lengthArray)
+playerOneCarrier.isSunk()
 playerOneCarrier.hit(1)
 console.log(playerOneCarrier.lengthArray)
+playerOneCarrier.isSunk()
+playerOneCarrier.hit(2)
+console.log(playerOneCarrier.lengthArray)
+playerOneCarrier.isSunk()
+playerOneCarrier.hit(3)
+console.log(playerOneCarrier.lengthArray)
+playerOneCarrier.isSunk()
+playerOneCarrier.hit(4)
+console.log(playerOneCarrier.lengthArray)
+playerOneCarrier.isSunk()
 
 /*let carrierOne = ship(5)
 let battleShipOne = ship(4)
