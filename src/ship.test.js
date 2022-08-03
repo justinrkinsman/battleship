@@ -1,36 +1,18 @@
 const ship = require('./ship.js');
 const calculateShipLength = require('./calculateShipLength.js');
 const gameboard = require('./gameboard.js')
-//const placeShip = require('./placeship.js')
 
 test('Ship Length', () => {
-    let shipTest = ship(1)
-    let currentShipLength = shipTest.shipLength
-    expect(currentShipLength).toEqual([0]);
+    let shipTest = ship('destroyer', 2)
+    let currentShipLength = shipTest.lengthArray
+    expect(currentShipLength).toEqual([0, 0]);
 });
 
-test('Ship Length 2', () => {
-    let shipTest = ship(2)
-    let shipLength = shipTest.shipLength
-    expect(shipLength).toEqual([0, 0]);
+test('Ship Length II', () => {
+    let shipTest = ship('battleship', 4)
+    let shipLength = shipTest.lengthArray
+    expect(shipLength).toEqual([0, 0, 0, 0]);
 });
-
-test('Ship sunk', () => {
-    let shipTest = ship(5)
-    shipTest.hit(0)
-    shipTest.hit(1)
-    shipTest.hit(2)
-    shipTest.hit(3)
-    shipTest.hit(4)
-    let shipIsSunk = shipTest.isSunk()
-    expect(shipIsSunk).toEqual(true);
-});
-
-test('Ship still floats', () => {
-    let shipTest = ship(5)
-    let shipIsSunk = shipTest.isSunk()
-    expect(shipIsSunk).toEqual(false)
-})
 
 test('Will return array same length as ship', () => {
     expect(calculateShipLength(5)).toEqual([0, 0, 0, 0, 0])
@@ -206,8 +188,20 @@ test('Change ship orientation', () => {
 })
 
 test('Ship hit', () => {
-    let testShip = ship(5)
+    let testShip = ship('carrier', 5)
     expect(testShip.hit(2)).toEqual([0, 0, 1, 0, 0])
+})
+
+test('Ship sunk', () => {
+    let testShip = ship('destroyer', 2)
+    testShip.hit(0)
+    testShip.hit(1)
+    expect(testShip.isSunk()).toEqual(true)
+})
+
+test('Ship floats', () => {
+    let testShip = ship('destroyer', 2)
+    expect(testShip.isSunk()).toEqual(false)
 })
 
 /*

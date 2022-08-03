@@ -1,18 +1,17 @@
 const calculateShipLength = require('./calculateShipLength.js');
 
-function ship(length){
-    let shipLength = calculateShipLength(length)
+function ship(name, length){
     return {
-        shipLength,
+        name: name,
+        lengthArray: calculateShipLength(length),
         hit(number) {
-            shipLength[number] = 1
-            return shipLength 
+            this.lengthArray[number] = 1
+            return this.lengthArray
         },
         isSunk() {
-            if (shipLength.includes(0)){
+            if (this.lengthArray.includes(0)){
                 return false
-            }
-            if (!shipLength.includes(0)){
+            }else if (!this.lengthArray.includes(0)){
                 return true
             }
         }
