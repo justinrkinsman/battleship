@@ -26,12 +26,12 @@ function gameboard() {
                 let newColumn = column + i
                 createGrid[row][newColumn] = 2
             }
-            }else{
+        }else{
             for (let i = 0; i < newShip.length; i++){
                 let newRow = row + i
                 createGrid[newRow][column] = 2
             }
-            }
+        }
         //random placement
         /*const keys = Object.keys(createGrid)
         const prop = keys[Math.floor(Math.random() * keys.length)]
@@ -57,7 +57,7 @@ function gameboard() {
         }
     }
     return {
-        receiveAttack, createGrid, placeShip
+        receiveAttack, placeShip
     }
 }
 

@@ -86,10 +86,42 @@ test('Ship floats', () => {
     expect(testShip.isSunk()).toEqual(false)
 })
 
-test('Gameboard places prebuilt ships', () => {
+test('Gameboard places ships vertically', () => {
     const playerOneCarrier = ship('carrier', 5)
+    const createGrid = {
+        0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    }
+    function gameboard() {
+        const placeShip = (shipName, row, column, orientation = 'vertical') => {
+            let newShip = shipName.lengthArray
+            if (orientation === "horizontal") {
+                for (let i = 0; i < newShip.length; i++){
+                    let newColumn = column + i
+                    createGrid[row][newColumn] = 2
+                }
+            }else{
+                for (let i = 0; i < newShip.length; i++){
+                    let newRow = row + i
+                    createGrid[newRow][column] = 2
+                }
+            }
+            return createGrid
+        }
+        return {
+            placeShip
+        }
+    }
     let testGame = gameboard()
-    let testShip = testGame.placeShip(playerOneCarrier, 1, 1)
+    let testShip = testGame.placeShip(playerOneCarrier, 1, 1, 'vertical')
     expect(testShip).toEqual({
         "0": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
         "1": [0, 2, 0, 0, 0, 0, 0, 0, 0, 0], 
@@ -97,6 +129,55 @@ test('Gameboard places prebuilt ships', () => {
         "3": [0, 2, 0, 0, 0, 0, 0, 0, 0, 0], 
         "4": [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
         "5": [0, 2, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "6": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "7": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "8": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "9": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
+})
+
+test('Gameboard places ships horizontally', () => {
+    const playerOneBattleship = ship('battleship', 4)
+    const createGrid = {
+        0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    }
+    function gameboard() {
+        const placeShip = (shipName, row, column, orientation = 'vertical') => {
+            let newShip = shipName.lengthArray
+            if (orientation === "horizontal") {
+                for (let i = 0; i < newShip.length; i++){
+                    let newColumn = column + i
+                    createGrid[row][newColumn] = 2
+                }
+            }else{
+                for (let i = 0; i < newShip.length; i++){
+                    let newRow = row + i
+                    createGrid[newRow][column] = 2
+                }
+            }
+            return createGrid
+        }
+        return {
+            placeShip
+        }
+    }
+    let testGame = gameboard()
+    let testShip = testGame.placeShip(playerOneBattleship, 1, 1, 'horizontal')
+    expect(testShip).toEqual({
+        "0": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "1": [0, 2, 2, 2, 2, 0, 0, 0, 0, 0], 
+        "2": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "3": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "4": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "5": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
         "6": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
         "7": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
         "8": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
