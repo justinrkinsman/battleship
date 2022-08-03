@@ -210,7 +210,6 @@ test('Ship hit', () => {
     expect(testShip.hit(2)).toEqual([0, 0, 1, 0, 0])
 })
 
-
 /*
 const keys = Object.keys(createGrid)
         const prop = keys[Math.floor(Math.random() * keys.length)]

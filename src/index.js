@@ -6,28 +6,45 @@
 
 //const { ContextExclusionPlugin } = require("webpack")
 
-function ship(length){
-    let shipLength = calculateShipLength(length)
+function ship(name, length){
     return {
-        shipLength,
+        name: name,
+        lengthArray: calculateShipLength(length),
         hit(number) {
-            shipLength[number] = 1
-            return shipLength 
+            this.lengthArray[number] = 1
+            console.log(this.lengthArray)       ///The proper ship length is not being used in these functions
         },
         isSunk() {
-            if (shipLength.includes('0')){
-                return false
+            if (shipLength.includes('1')){
+                console.log('Float')
             }
-            if (!shipLength.includes('0')){
-                return true
-            }
+            console.log('Sunk')
         }
     }
 }
 
-function calculateShipLength(array) {
+let playerOneCarrier = ship('carrier', 5)
+console.log(playerOneCarrier.lengthArray)
+playerOneCarrier.hit(3)
+console.log(playerOneCarrier.lengthArray)
+playerOneCarrier.hit(1)
+console.log(playerOneCarrier.lengthArray)
+
+/*let carrierOne = ship(5)
+let battleShipOne = ship(4)
+let submarineOne = ship(3)
+let cruiserOne = ship(3)
+let destroyerOne = ship(2)
+console.log(destroyerOne.shipLength)
+console.log(carrierOne)
+console.log(battleShipOne)
+console.log(submarineOne)
+console.log(cruiserOne)
+console.log(destroyerOne)*/
+
+function calculateShipLength(length) {
     let arr = []
-    for (let i = 0; i < array; i++){
+    for (let i = 0; i < length; i++){
         arr.push(0)
     }
     return arr
@@ -158,28 +175,16 @@ game.placeShip('destroyer', 0, 0)
 game.placeShip('battleShip', 2, 2)
 game.placeShip('carrier', 1, 3)
 
-
 document.addEventListener('click', function(e){
     if(e.target && e.target.className === 'grid'){
         let coordinates = e.target.id
         let coordinatesRow = coordinates.charAt(0)
         let coordinatesCol = coordinates.slice(-1)
         game.receiveAttack(coordinatesRow, coordinatesCol)
+        //player.hit(2)
+        //console.log(player.isSunk())
 }
 })
-
-/*
-0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-*/
 
 /*
 0: ['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7', 'a8', 'a9', 'a10'],
@@ -199,13 +204,14 @@ let battleShipOne = ship(4)
 let submarineOne = ship(3)
 let cruiserOne = ship(3)
 let destroyerOne = ship(2)
+destroyerOne.isSunk()
 console.log(carrierOne)
 console.log(battleShipOne)
 console.log(submarineOne)
 console.log(cruiserOne)
-console.log(destroyerOne)
+console.log(destroyerOne)*/
 
-let carrierTwo = ship(5)
+/*let carrierTwo = ship(5)
 let battleShipTwo = ship(4)
 let submarineTwo = ship(3)
 let cruiserTwo = ship(3)
