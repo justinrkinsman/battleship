@@ -16,9 +16,9 @@ function ship(name, length){
         },
         isSunk() {
             if (this.lengthArray.includes(0)){
-                console.log('Float')
+                return false
             }else if (!this.lengthArray.includes(0)){
-                console.log('Sunk')
+                return true
             }
         }
     }
