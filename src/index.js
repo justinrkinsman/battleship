@@ -126,12 +126,12 @@ function gameboard() {
         }
     }
     const allShipsSunk = () => {
-        /*if(playerOneCarrier.isSunk() === true && playerOneBattleship.isSunk() === true && playerOneCruiser.isSunk() === true && playerOneSubmarine.isSunk() === true && playerOneDestroyer.isSunk() === true){
+        if(carrier0.isSunk() === true && battleship1.isSunk() === true && 
+        cruiser3.isSunk() === true && submarine2.isSunk() === true && destroyer4.isSunk() === true){
             console.log('Game Over')
         }else{
             console.log('New Round')
-        }*/
-        console.log(createGrid)
+        }
     }
     return {
         receiveAttack, placeShip, allShipsSunk
@@ -213,7 +213,6 @@ document.addEventListener('click', function(e){
         let coordinatesCol = coordinates.slice(-1)
         game.receiveAttack(coordinatesRow, coordinatesCol)
         game.allShipsSunk()
-        console.log(playerOneShips)
         //console.log(playerOneCarrier.lengthArray)
         //playerOneCarrier.isSunk()
 }
