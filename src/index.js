@@ -16,9 +16,9 @@ function ship(name, length){
         },
         isSunk() {
             if (this.lengthArray.includes(0)){
-                return false
+                console.log(false)
             }else if (!this.lengthArray.includes(0)){
-                return true
+                console.log(true)
             }
         }
     }
@@ -70,11 +70,13 @@ function gameboard() {
             for (let i = 0; i < newShip.length; i++){
                 let newColumn = column + i
                 createGrid[row][newColumn] = 2
+                shipLocator(`${row}, ${newColumn}`, shipName)
             }
         }else{
             for (let i = 0; i < newShip.length; i++){
                 let newRow = row + i
                 createGrid[newRow][column] = 2
+                shipLocator(`${newRow}, ${column}`, shipName)
             }
         }
         //random placement
@@ -89,21 +91,34 @@ function gameboard() {
     const receiveAttack = (row, column) => {
         if (newGrid[row][column] === emptySpace){
             newGrid[row][column] = miss
-            console.log(newGrid)
+            //console.log(newGrid)
             let item = document.getElementById(`${row}, ${column}`)
             populateGrid(item.id, 'Miss')
             return newGrid
         }else if (newGrid[row][column] === shipLocation){
             newGrid[row][column] = hit
-            console.log(newGrid)
+            //console.log(newGrid)
             let item = document.getElementById(`${row}, ${column}`)
             populateGrid(item.id, 'Hit')
             return newGrid
         }
     }
-    return {
-        receiveAttack, placeShip
+    const allShipsSunk = () => {
+        /*if(playerOneCarrier.isSunk() === true && playerOneBattleship.isSunk() === true && playerOneCruiser.isSunk() === true && playerOneSubmarine.isSunk() === true && playerOneDestroyer.isSunk() === true){
+            console.log('Game Over')
+        }else{
+            console.log('New Round')
+        }*/
+        console.log(createGrid)
     }
+    return {
+        receiveAttack, placeShip, allShipsSunk
+    }
+}
+
+const shipLocator = (coordinates, shipName) => {
+    let cell = document.getElementById(coordinates)
+    cell.setAttribute('data-shipName', shipName.name)
 }
 
 //
@@ -155,6 +170,7 @@ game.placeShip(playerOneDestroyer, 0, 0)
 game.placeShip(playerOneBattleship, 2, 2)
 game.placeShip(playerOneCarrier, 1, 3)
 game.placeShip(playerOneSubmarine, 7, 6, 'horizontal')
+game.placeShip(playerOneCruiser, 9, 0, 'horizontal')
 
 document.addEventListener('click', function(e){
     if(e.target && e.target.className === 'grid'){
@@ -162,6 +178,9 @@ document.addEventListener('click', function(e){
         let coordinatesRow = coordinates.charAt(0)
         let coordinatesCol = coordinates.slice(-1)
         game.receiveAttack(coordinatesRow, coordinatesCol)
+        game.allShipsSunk()
+        console.log(playerOneCarrier.lengthArray)
+        //playerOneCarrier.isSunk()
 }
 })
 
