@@ -99,6 +99,8 @@ function gameboard() {
             newGrid[row][column] = hit
             //console.log(newGrid)
             let item = document.getElementById(`${row}, ${column}`)
+            let shipName = item.getAttribute('data-shipname')
+            console.log(shipName)
             populateGrid(item.id, 'Hit')
             return newGrid
         }
