@@ -73,6 +73,20 @@ const playerOneShips = [
     {"name": destroyer4}
 ]
 
+const playerTwoCarrier0 = ship('playerTwoCarrier0', 5)
+const playerTwoBattleship1 = ship('playerTwoBattleship', 1)
+const playerTwoSubmarine2 = ship('playerTwoSubmarine2', 3)
+const playerTwoCruiser3 = ship('playerTwoCrusier3', 3)
+const playerTwoDestroyer4 = ship('playerTwoDestroyer4', 2)
+
+const playerTwoShip = [
+    {"name": playerTwoCarrier0},
+    {"name": playerTwoBattleship1},
+    {"name": playerTwoSubmarine2},
+    {"name": playerTwoCruiser3},
+    {"name": playerTwoDestroyer4}
+]
+
 //let result = carrier.find(item => item.name === carrier)
 //console.log(carrier)
 
