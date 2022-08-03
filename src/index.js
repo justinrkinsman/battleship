@@ -87,13 +87,13 @@ function gameboard() {
             for (let i = 0; i < newShip.length; i++){
                 let newColumn = column + i
                 createGrid[row][newColumn] = 2
-                shipLocator(`${row}, ${newColumn}`, shipName)
+                shipLocator(`${row}, ${newColumn}`, shipName, i)
             }
         }else{
             for (let i = 0; i < newShip.length; i++){
                 let newRow = row + i
                 createGrid[newRow][column] = 2
-                shipLocator(`${newRow}, ${column}`, shipName)
+                shipLocator(`${newRow}, ${column}`, shipName, i)
             }
         }
         //random placement
@@ -141,9 +141,11 @@ const getShipArray = (shipName) => {
     return playerOneShips[index].name
 }
 
-const shipLocator = (coordinates, shipName) => {
+const shipLocator = (coordinates, shipName, index) => {
     let cell = document.getElementById(coordinates)
     cell.setAttribute('data-shipName', shipName.name)
+    cell.setAttribute('data-index', index)
+    //cell.setAttribute('data-index', )
 }
 
 //
