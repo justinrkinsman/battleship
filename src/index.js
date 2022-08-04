@@ -228,5 +228,10 @@ document.addEventListener('click', function(e){
         let coordinatesCol = coordinates.slice(-1)
         game.receiveAttack(coordinatesRow, coordinatesCol, createGrid2, 'playerTwo')
         game.allShipsSunk(playerTwoShips)
+        setTimeout(computerPlay, 1250)
 }
 })
+
+const computerPlay = () => {
+    console.log('my turn@')
+}
