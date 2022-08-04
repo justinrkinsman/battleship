@@ -183,6 +183,34 @@ test('Gameboard places ships horizontally', () => {
         "8": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
         "9": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]})
 })
+
+test('Game over function', () => {
+    const playerTwoDestroyer4 = ship('playerTwoDestroyer4', 2)
+    playerTwoDestroyer4.hit(0)
+    playerTwoDestroyer4.hit(1)
+    const playerTwoCruiser3 = ship('playerTwoCruiser3', 3)
+    playerTwoCruiser3.hit(0)
+    playerTwoCruiser3.hit(1)
+    playerTwoCruiser3.hit(2)
+    const playerTwoShips = [
+        {"name": playerTwoCruiser3},
+        {"name": playerTwoDestroyer4},
+        'Player Two'
+    ]
+    const allShipsSunk = (player) => {
+        if(player[0].name.isSunk() === true && player[1].name.isSunk() === true){
+            return gameOver(player[2])
+        }
+    }
+    const gameOver = (player) => {
+        if (player === 'Player Two'){
+            return (`Game Over. Player One Wins!`)
+        }else if (player === 'Player One'){
+            return ('Game Over. Player Two Wins!')
+        }
+    }
+    expect(allShipsSunk(playerTwoShips)).toEqual('Game Over. Player One Wins!')
+})
 /*
 const keys = Object.keys(createGrid)
         const prop = keys[Math.floor(Math.random() * keys.length)]

@@ -125,9 +125,9 @@ function gameboard() {
             gridSelection[row][column] = hit
             let item = document.getElementById(`${player}${row}, ${column}`)
             let shipName = item.getAttribute('data-shipname')
-            let shipArray = getShipArray(shipName, playerTwoShips)                                ///Start Here
+            let shipArray = getShipArray(shipName, playerTwoShips)
             let shipIndex = item.getAttribute('data-index')
-            shipArray.hit(shipIndex)                                                ///Then Here
+            shipArray.hit(shipIndex)
             populateGrid(item.id, 'Hit')
             return gridSelection
         }
@@ -136,14 +136,16 @@ function gameboard() {
         if(player[0].name.isSunk() === true && player[1].name.isSunk() === true && 
         player[2].name.isSunk() === true && player[3].name.isSunk() === true && 
         player[4].name.isSunk() === true){
-            console.log('Game Over')
-        }else{
-            console.log('New Round')
+            gameOver(player)
         }
     }
     return {
         receiveAttack, placeShip, allShipsSunk
     }
+}
+
+const gameOver = (playerName) => {
+    console.log(playerName)
 }
 
 const getShipArray = (shipName, player) => {
