@@ -73,12 +73,12 @@ const playerOneShips = [
 ]
 
 const playerTwoCarrier0 = ship('playerTwoCarrier0', 5)
-const playerTwoBattleship1 = ship('playerTwoBattleship', 1)
+const playerTwoBattleship1 = ship('playerTwoBattleship1', 4)
 const playerTwoSubmarine2 = ship('playerTwoSubmarine2', 3)
 const playerTwoCruiser3 = ship('playerTwoCrusier3', 3)
 const playerTwoDestroyer4 = ship('playerTwoDestroyer4', 2)
 
-const playerTwoShip = [
+const playerTwoShips = [
     {"name": playerTwoCarrier0},
     {"name": playerTwoBattleship1},
     {"name": playerTwoSubmarine2},
@@ -91,19 +91,19 @@ function gameboard() {
     let emptySpace = 0
     let miss = 3
     let hit = 1
-    const placeShip = (shipName, row, column, gridSelection, orientation = 'vertical') => {
+    const placeShip = (shipName, row, column, gridSelection, player, orientation = 'vertical') => {
         let newShip = shipName.lengthArray
         if (orientation === "horizontal") {
             for (let i = 0; i < newShip.length; i++){
                 let newColumn = column + i
                 gridSelection[row][newColumn] = 2
-                shipLocator(`${row}, ${newColumn}`, shipName, i)
+                shipLocator(`${player}${row}, ${newColumn}`, shipName, i)
             }
         }else{
             for (let i = 0; i < newShip.length; i++){
                 let newRow = row + i
                 gridSelection[newRow][column] = 2
-                shipLocator(`${newRow}, ${column}`, shipName, i)
+                shipLocator(`${player}${newRow}, ${column}`, shipName, i)
             }
         }
         //random placement
@@ -114,25 +114,25 @@ function gameboard() {
         createGrid[prop][prop2] = shipLocation*/
         return createGrid
     }
-        let newGrid = createGrid
-    const receiveAttack = (row, column) => {
-        if (newGrid[row][column] === emptySpace){
-            newGrid[row][column] = miss
-            let item = document.getElementById(`${row}, ${column}`)
+        //let newGrid = createGrid
+    const receiveAttack = (row, column, gridSelection, player) => {
+        if (gridSelection[row][column] === emptySpace){
+            gridSelection[row][column] = miss
+            let item = document.getElementById(`${player}${row}, ${column}`)
             populateGrid(item.id, 'Miss')
-            return newGrid
-        }else if (newGrid[row][column] === shipLocation){
-            newGrid[row][column] = hit
-            let item = document.getElementById(`${row}, ${column}`)
+            return gridSelection
+        }else if (gridSelection[row][column] === shipLocation){
+            gridSelection[row][column] = hit
+            let item = document.getElementById(`${player}${row}, ${column}`)
             let shipName = item.getAttribute('data-shipname')
-            let shipArray = getShipArray(shipName)
+            let shipArray = getShipArray(shipName)                                ///Start Here
             let shipIndex = item.getAttribute('data-index')
-            shipArray.hit(shipIndex)
+            shipArray.hit(shipIndex)                                                ///Then Here
             populateGrid(item.id, 'Hit')
-            return newGrid
+            return gridSelection
         }
     }
-    const allShipsSunk = () => {
+    const allShipsSunk = (player) => {
         if(carrier0.isSunk() === true && battleship1.isSunk() === true && 
         cruiser3.isSunk() === true && submarine2.isSunk() === true && destroyer4.isSunk() === true){
             console.log('Game Over')
@@ -141,7 +141,7 @@ function gameboard() {
         }
     }
     return {
-        receiveAttack, placeShip, allShipsSunk
+        receiveAttack, placeShip/*, allShipsSunk*/
     }
 }
 
@@ -164,7 +164,8 @@ let createNewGrid = (() => {
     for (let j = 0; j < 10; j++){
         let grid = document.createElement('div');
         grid.className = `grid`;
-        grid.setAttribute('id', `${i}, ${j}`)
+        grid.setAttribute('id', `playerOne${i}, ${j}`)
+        grid.classList.add('playerOne')
         container.appendChild(grid);
         }
         document.getElementById('container').style.gridTemplateColumns = `repeat(${10}, 1fr)`;
@@ -199,21 +200,25 @@ const populateGrid = (coordinates, result) => {
 
 const game = gameboard()
 
-game.placeShip(destroyer4, 0, 0, createGrid2)
-game.placeShip(battleship1, 2, 2, createGrid2)
-game.placeShip(carrier0, 1, 3, createGrid2)
-game.placeShip(submarine2, 7, 6, createGrid2, 'horizontal')
-game.placeShip(cruiser3, 9, 0, createGrid2, 'horizontal')
+game.placeShip(destroyer4, 0, 0, createGrid, 'playerOne')
+game.placeShip(battleship1, 2, 2, createGrid, 'playerOne')
+game.placeShip(carrier0, 1, 3, createGrid, 'playerOne')
+game.placeShip(submarine2, 7, 6, createGrid, 'playerOne', 'horizontal')
+game.placeShip(cruiser3, 9, 0, createGrid, 'playerOne', 'horizontal')
+
+game.placeShip(playerTwoCarrier0, 0, 0, createGrid2, 'playerTwo')
+game.placeShip(playerTwoBattleship1, 1, 1, createGrid2, 'playerTwo')
+game.placeShip(playerTwoSubmarine2, 2, 2, createGrid2, 'playerTwo')
+game.placeShip(playerTwoCruiser3, 3, 3, createGrid2, 'playerTwo')
+game.placeShip(playerTwoDestroyer4, 4, 4, createGrid2, 'playerTwo')
 
 document.addEventListener('click', function(e){
     if(e.target && e.target.classList.contains('playerTwo')){
         let coordinates = e.target.id
         let coordinatesRow = coordinates.slice(-4, -3)
         let coordinatesCol = coordinates.slice(-1)
-        console.log(coordinatesRow)
-        console.log(coordinatesCol)
-        game.receiveAttack(coordinatesRow, coordinatesCol)
-        game.allShipsSunk()
+        game.receiveAttack(coordinatesRow, coordinatesCol, createGrid2, 'playerTwo')
+        //game.allShipsSunk()
         console.log(createGrid2)
 }
 })
