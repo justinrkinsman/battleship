@@ -69,7 +69,8 @@ const playerOneShips = [
     {"name": battleship1},
     {"name": submarine2},
     {"name": cruiser3},
-    {"name": destroyer4}
+    {"name": destroyer4},
+    'Player One'
 ]
 
 const playerTwoCarrier0 = ship('playerTwoCarrier0', 5)
@@ -83,7 +84,8 @@ const playerTwoShips = [
     {"name": playerTwoBattleship1},
     {"name": playerTwoSubmarine2},
     {"name": playerTwoCruiser3},
-    {"name": playerTwoDestroyer4}
+    {"name": playerTwoDestroyer4},
+    'Player Two'
 ]
 
 function gameboard() {
@@ -136,7 +138,7 @@ function gameboard() {
         if(player[0].name.isSunk() === true && player[1].name.isSunk() === true && 
         player[2].name.isSunk() === true && player[3].name.isSunk() === true && 
         player[4].name.isSunk() === true){
-            gameOver(player)
+            gameOver(player[5])
         }
     }
     return {
@@ -145,7 +147,11 @@ function gameboard() {
 }
 
 const gameOver = (playerName) => {
-    console.log(playerName)
+    if (playerName === 'Player Two'){
+        alert (`Game Over. Player One Wins!`)
+    }else if (playerName === 'Player One'){
+        alert ('Game Over. Player Two Wins!')
+    }
 }
 
 const getShipArray = (shipName, player) => {
