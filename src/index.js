@@ -105,15 +105,27 @@ function gameboard() {
         let newShip = shipName.lengthArray
         if (orientation === "horizontal") {
             for (let i = 0; i < newShip.length; i++){
-                let newColumn = column + i
-                gridSelection[row][newColumn] = 2
-                shipLocator(`${player}${row}, ${newColumn}`, shipName, i)
+                if ((10 - column) < newShip.length){
+                    let newColumn = column - i
+                    gridSelection[row][newColumn] = 2
+                    shipLocator(`${player}${row}, ${newColumn}`, shipName, i)
+                }else{
+                    let newColumn = column + i
+                    gridSelection[row][newColumn] = 2
+                    shipLocator(`${player}${row}, ${newColumn}`, shipName, i)
+                }
             }
         }else{
             for (let i = 0; i < newShip.length; i++){
-                let newRow = row + i
-                gridSelection[newRow][column] = 2
-                shipLocator(`${player}${newRow}, ${column}`, shipName, i)
+                if ((10 - row) < newShip.length){
+                    let newRow = row - i
+                    gridSelection[newRow][column] = 2
+                    shipLocator(`${player}${newRow}, ${column}`, shipName, i)
+                }else{
+                    let newRow = row + i
+                    gridSelection[newRow][column] = 2
+                    shipLocator(`${player}${newRow}, ${column}`, shipName, i)
+                }
             }
         }
         return createGrid
@@ -158,6 +170,7 @@ const gameOver = (playerName) => {
 
 const getShipArray = (shipName, player) => {
     let index = shipName.slice(-1)
+    console.log(createGrid2)
     return player[index].name
 }
 

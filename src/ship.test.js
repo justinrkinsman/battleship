@@ -211,6 +211,72 @@ test('Game over function', () => {
     }
     expect(allShipsSunk(playerTwoShips)).toEqual('Game Over. Player One Wins!')
 })
+
+test('Place ship out of bounds', () => {
+    const carrier0 = ship('carrier0', 5)
+    const battleship1 = ship('battleship1', 4)
+    const submarine2 = ship('submarine2', 3)
+    const cruiser3 = ship('cruiser3', 3)
+    const destroyer4 = ship('destroyer4', 2)
+    
+    const playerOneShips = [
+        {"name": carrier0},
+        {"name": battleship1},
+        {"name": submarine2},
+        {"name": cruiser3},
+        {"name": destroyer4},
+        'playerOne'
+    ]
+    const createGrid = {
+        0: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        1: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        2: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        3: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        4: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        5: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        6: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        7: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        8: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        9: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    }
+    const placeShip = (shipName, row, column, gridSelection, orientation = 'vertical') => {
+        let newShip = shipName.lengthArray
+        if (orientation === "horizontal") {
+            for (let i = 0; i < newShip.length; i++){
+                if ((10 - column) < newShip.length){
+                    let newColumn = column - i
+                    gridSelection[row][newColumn] = 2
+                }else{
+                   let newColumn = column + i
+                    gridSelection[row][newColumn] = 2
+                }
+            }
+        }else{
+            for (let i = 0; i < newShip.length; i++){
+                if ((10 - row) < newShip.length){
+                    let newRow = row - i
+                    gridSelection[newRow][column] = 2
+                }else{
+                    let newRow = row + i
+                    gridSelection[newRow][column] = 2
+                }
+            }
+        }
+        return createGrid
+    }
+    expect(placeShip(carrier0, 9, 9, createGrid, 'horizontal')).toEqual({
+        "0": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "1": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "2": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "3": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "4": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "5": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "6": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "7": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "8": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+        "9": [0, 0, 0, 0, 0, 2, 2, 2, 2, 2]})
+})
+
 /*
 const keys = Object.keys(createGrid)
         const prop = keys[Math.floor(Math.random() * keys.length)]
