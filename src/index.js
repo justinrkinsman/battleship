@@ -15,10 +15,10 @@ function ship(name, length){
             return this.lengthArray
         },
         isSunk() {
-            if (this.lengthArray.includes(0)){
-                console.log(false)
-            }else if (!this.lengthArray.includes(0)){
-                console.log(true)
+            if (this.lengthArray.includes(0) === true){
+                return false
+            }else if (this.lengthArray.includes(0) === false){
+                return true
             }
         }
     }
@@ -125,7 +125,7 @@ function gameboard() {
             gridSelection[row][column] = hit
             let item = document.getElementById(`${player}${row}, ${column}`)
             let shipName = item.getAttribute('data-shipname')
-            let shipArray = getShipArray(shipName)                                ///Start Here
+            let shipArray = getShipArray(shipName, playerTwoShips)                                ///Start Here
             let shipIndex = item.getAttribute('data-index')
             shipArray.hit(shipIndex)                                                ///Then Here
             populateGrid(item.id, 'Hit')
@@ -133,21 +133,22 @@ function gameboard() {
         }
     }
     const allShipsSunk = (player) => {
-        if(carrier0.isSunk() === true && battleship1.isSunk() === true && 
-        cruiser3.isSunk() === true && submarine2.isSunk() === true && destroyer4.isSunk() === true){
+        if(player[0].name.isSunk() === true && player[1].name.isSunk() === true && 
+        player[2].name.isSunk() === true && player[3].name.isSunk() === true && 
+        player[4].name.isSunk() === true){
             console.log('Game Over')
         }else{
             console.log('New Round')
         }
     }
     return {
-        receiveAttack, placeShip/*, allShipsSunk*/
+        receiveAttack, placeShip, allShipsSunk
     }
 }
 
-const getShipArray = (shipName) => {
+const getShipArray = (shipName, player) => {
     let index = shipName.slice(-1)
-    return playerOneShips[index].name
+    return player[index].name
 }
 
 const shipLocator = (coordinates, shipName, index) => {
@@ -218,7 +219,6 @@ document.addEventListener('click', function(e){
         let coordinatesRow = coordinates.slice(-4, -3)
         let coordinatesCol = coordinates.slice(-1)
         game.receiveAttack(coordinatesRow, coordinatesCol, createGrid2, 'playerTwo')
-        //game.allShipsSunk()
-        console.log(createGrid2)
+        game.allShipsSunk(playerTwoShips)
 }
 })
