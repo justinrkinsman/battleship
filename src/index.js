@@ -6,6 +6,14 @@
 
 //const { ContextExclusionPlugin } = require("webpack")
 
+const selectRandomGridCooridnates = () => {
+    let row = (Math.floor(Math.random() * 10))
+    let col = (Math.floor(Math.random() * 10))
+    return {
+        row, col
+    }
+}
+
 function ship(name, length){
     return {
         name: name,
@@ -108,12 +116,6 @@ function gameboard() {
                 shipLocator(`${player}${newRow}, ${column}`, shipName, i)
             }
         }
-        //random placement
-        /*const keys = Object.keys(createGrid)
-        const prop = keys[Math.floor(Math.random() * keys.length)]
-        const keys2 = Object.keys(createGrid[prop])
-        const prop2 = keys2[Math.floor(Math.random() * keys2.length)]
-        createGrid[prop][prop2] = shipLocation*/
         return createGrid
     }
         //let newGrid = createGrid
@@ -215,11 +217,17 @@ game.placeShip(carrier0, 1, 3, createGrid, 'playerOne')
 game.placeShip(submarine2, 7, 6, createGrid, 'playerOne', 'horizontal')
 game.placeShip(cruiser3, 9, 0, createGrid, 'playerOne', 'horizontal')
 
-game.placeShip(playerTwoCarrier0, 0, 0, createGrid2, 'playerTwo')
-game.placeShip(playerTwoBattleship1, 1, 1, createGrid2, 'playerTwo')
-game.placeShip(playerTwoSubmarine2, 2, 2, createGrid2, 'playerTwo')
-game.placeShip(playerTwoCruiser3, 3, 3, createGrid2, 'playerTwo')
-game.placeShip(playerTwoDestroyer4, 4, 4, createGrid2, 'playerTwo')
+const carrierCoordinates = selectRandomGridCooridnates()
+const battleshipCoordinates = selectRandomGridCooridnates()
+const submarineCoordinates = selectRandomGridCooridnates()
+const cruiserCoordinates = selectRandomGridCooridnates()
+const destroyerCoordinates = selectRandomGridCooridnates()
+
+game.placeShip(playerTwoCarrier0, carrierCoordinates.row, carrierCoordinates.col, createGrid2, 'playerTwo')
+game.placeShip(playerTwoBattleship1, battleshipCoordinates.row, battleshipCoordinates.col, createGrid2, 'playerTwo')
+game.placeShip(playerTwoSubmarine2, submarineCoordinates.row, submarineCoordinates.col, createGrid2, 'playerTwo')
+game.placeShip(playerTwoCruiser3, cruiserCoordinates.row, cruiserCoordinates.col, createGrid2, 'playerTwo')
+game.placeShip(playerTwoDestroyer4, destroyerCoordinates.row, destroyerCoordinates.col, createGrid2, 'playerTwo')
 
 const playerTurn = (() => document.addEventListener('click', function(e){
     if(e.target && e.target.classList.contains('playerTwo')){
@@ -245,12 +253,4 @@ const computerPlay = () => {
         game.receiveAttack(coordinates.row, coordinates.col, createGrid, playerOneShips)
         game.allShipsSunk(playerOneShips)
     } 
-}
-
-const selectRandomGridCooridnates = () => {
-    let row = (Math.floor(Math.random() * 10))
-    let col = (Math.floor(Math.random() * 10))
-    return {
-        row, col
-    }
 }
