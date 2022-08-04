@@ -221,16 +221,20 @@ game.placeShip(playerTwoSubmarine2, 2, 2, createGrid2, 'playerTwo')
 game.placeShip(playerTwoCruiser3, 3, 3, createGrid2, 'playerTwo')
 game.placeShip(playerTwoDestroyer4, 4, 4, createGrid2, 'playerTwo')
 
-document.addEventListener('click', function(e){
+const playerTurn = (() => document.addEventListener('click', function(e){
     if(e.target && e.target.classList.contains('playerTwo')){
         let coordinates = e.target.id
         let coordinatesRow = coordinates.slice(-4, -3)
         let coordinatesCol = coordinates.slice(-1)
-        game.receiveAttack(coordinatesRow, coordinatesCol, createGrid2, playerTwoShips)
-        game.allShipsSunk(playerTwoShips)
-        /*setTimeout(*/computerPlay()/*, 1250)*/
+        if ((createGrid2[coordinatesRow][coordinatesCol]) === 1 || (createGrid2[coordinatesRow][coordinatesCol]) === 3){
+            return
+        }else{
+            game.receiveAttack(coordinatesRow, coordinatesCol, createGrid2, playerTwoShips)
+            game.allShipsSunk(playerTwoShips)
+            computerPlay()
+        }
 }
-})
+}))()
 
 const computerPlay = () => {
     let coordinates = selectRandomGridCooridnates()
@@ -240,7 +244,7 @@ const computerPlay = () => {
     }else{
         game.receiveAttack(coordinates.row, coordinates.col, createGrid, playerOneShips)
         game.allShipsSunk(playerOneShips)
-    }
+    } 
 }
 
 const selectRandomGridCooridnates = () => {
