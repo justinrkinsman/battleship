@@ -10,7 +10,7 @@ function ship(name, length){
     return {
         name: name,
         lengthArray: calculateShipLength(length),
-        hit(number) {
+        hit(number, playerName) {
             this.lengthArray[number] = 1
             return this.lengthArray
         },
@@ -70,7 +70,7 @@ const playerOneShips = [
     {"name": submarine2},
     {"name": cruiser3},
     {"name": destroyer4},
-    'Player One'
+    'playerOne'
 ]
 
 const playerTwoCarrier0 = ship('playerTwoCarrier0', 5)
@@ -85,7 +85,7 @@ const playerTwoShips = [
     {"name": playerTwoSubmarine2},
     {"name": playerTwoCruiser3},
     {"name": playerTwoDestroyer4},
-    'Player Two'
+    'playerTwo'
 ]
 
 function gameboard() {
@@ -120,16 +120,16 @@ function gameboard() {
     const receiveAttack = (row, column, gridSelection, player) => {
         if (gridSelection[row][column] === emptySpace){
             gridSelection[row][column] = miss
-            let item = document.getElementById(`${player}${row}, ${column}`)
+            let item = document.getElementById(`${player[5]}${row}, ${column}`)
             populateGrid(item.id, 'Miss')
             return gridSelection
         }else if (gridSelection[row][column] === shipLocation){
             gridSelection[row][column] = hit
-            let item = document.getElementById(`${player}${row}, ${column}`)
+            let item = document.getElementById(`${player[5]}${row}, ${column}`)
             let shipName = item.getAttribute('data-shipname')
-            let shipArray = getShipArray(shipName, playerTwoShips)
+            let shipArray = getShipArray(shipName, player) //update player
             let shipIndex = item.getAttribute('data-index')
-            shipArray.hit(shipIndex)
+            shipArray.hit(shipIndex, player)  ///updates player
             populateGrid(item.id, 'Hit')
             return gridSelection
         }
@@ -147,9 +147,9 @@ function gameboard() {
 }
 
 const gameOver = (playerName) => {
-    if (playerName === 'Player Two'){
+    if (playerName === 'playerTwo'){
         alert (`Game Over. Player One Wins!`)
-    }else if (playerName === 'Player One'){
+    }else if (playerName === 'playerOne'){
         alert ('Game Over. Player Two Wins!')
     }
 }
@@ -226,12 +226,27 @@ document.addEventListener('click', function(e){
         let coordinates = e.target.id
         let coordinatesRow = coordinates.slice(-4, -3)
         let coordinatesCol = coordinates.slice(-1)
-        game.receiveAttack(coordinatesRow, coordinatesCol, createGrid2, 'playerTwo')
+        game.receiveAttack(coordinatesRow, coordinatesCol, createGrid2, playerTwoShips)
         game.allShipsSunk(playerTwoShips)
-        setTimeout(computerPlay, 1250)
+        /*setTimeout(*/computerPlay()/*, 1250)*/
 }
 })
 
 const computerPlay = () => {
-    console.log('my turn@')
+    let coordinates = selectRandomGridCooridnates()
+    let gridCoordinates = createGrid[coordinates.row][coordinates.col]
+    if (gridCoordinates === 3 || gridCoordinates === 1){
+        computerPlay()
+    }else{
+        game.receiveAttack(coordinates.row, coordinates.col, createGrid, playerOneShips)
+        game.allShipsSunk(playerOneShips)
+    }
+}
+
+const selectRandomGridCooridnates = () => {
+    let row = (Math.floor(Math.random() * 10))
+    let col = (Math.floor(Math.random() * 10))
+    return {
+        row, col
+    }
 }
