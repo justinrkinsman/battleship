@@ -14,6 +14,8 @@ const selectRandomGridCooridnates = () => {
     }
 }
 
+const randomCooridnates = selectRandomGridCooridnates()
+
 function ship(name, length){
     return {
         name: name,
@@ -107,6 +109,9 @@ function gameboard() {
             for (let i = 0; i < newShip.length; i++){
                 if ((10 - column) < newShip.length){
                     let newColumn = column - i
+                    if (gridSelection[row][newColumn] === 2){
+                        console.log('problems')
+                    }
                     gridSelection[row][newColumn] = 2
                     shipLocator(`${player}${row}, ${newColumn}`, shipName, i)
                 }else{
@@ -119,10 +124,18 @@ function gameboard() {
             for (let i = 0; i < newShip.length; i++){
                 if ((10 - row) < newShip.length){
                     let newRow = row - i
+                    if (gridSelection[newRow][column] === 2){
+                        reselectCoordinates(player, shipName, gridSelection)
+                        return
+                    }
                     gridSelection[newRow][column] = 2
                     shipLocator(`${player}${newRow}, ${column}`, shipName, i)
                 }else{
                     let newRow = row + i
+                    if (gridSelection[newRow][column] === 2){
+                        reselectCoordinates(player, shipName, gridSelection)
+                        return
+                    }
                     gridSelection[newRow][column] = 2
                     shipLocator(`${player}${newRow}, ${column}`, shipName, i)
                 }
@@ -157,6 +170,15 @@ function gameboard() {
     }
     return {
         receiveAttack, placeShip, allShipsSunk
+    }
+}
+
+const reselectCoordinates = (player, ship, grid) => {
+    if (player === "playerOne"){
+        console.log('this is player one speaking')
+    }else if (player === 'playerTwo'){
+        console.log('it works')
+        game.placeShip(ship, randomCooridnates.row, randomCooridnates.col, grid, player)
     }
 }
 
