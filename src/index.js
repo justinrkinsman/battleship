@@ -1,10 +1,5 @@
 /*window.addEventListener('load', (event) => {
 })*/
-
-//const { container } = require("webpack")
-
-//const { ContextExclusionPlugin } = require("webpack")
-
 const selectRandomGridCooridnates = () => {
     let row = (Math.floor(Math.random() * 10))
     let col = (Math.floor(Math.random() * 10))
@@ -252,12 +247,6 @@ const game = gameboard()
 //const playerOneCoordinatesRow = prompt('Aircraft Carrier coordinates? (Row)')
 //const playerOneCoordinatesCol = prompt('Aircraft Carrier coordinates? (Column)')
 
-game.placeShip(destroyer4, 0, 0, createGrid, 'playerOne')
-game.placeShip(battleship1, 2, 2, createGrid, 'playerOne')
-game.placeShip(carrier0, 1, 3, createGrid, 'playerOne')
-game.placeShip(submarine2, 7, 6, createGrid, 'playerOne', 'horizontal')
-game.placeShip(cruiser3, 9, 0, createGrid, 'playerOne', 'horizontal')
-
 const carrierCoordinates = selectRandomGridCooridnates()
 const battleshipCoordinates = selectRandomGridCooridnates()
 const submarineCoordinates = selectRandomGridCooridnates()
@@ -295,3 +284,22 @@ const computerPlay = () => {
         game.allShipsSunk(playerOneShips)
     } 
 }
+
+document.getElementById('submit').addEventListener('click', () => {
+    document.getElementById('enterCoordinates').classList.add('invisible')
+    let carrierRow = document.getElementById('carrierRow').value;
+    let carrierCol = document.getElementById('carrierCol').value;
+    let battleshipRow = document.getElementById('battleshipRow').value;
+    let battleshipCol = document.getElementById('battleshipCol').value;
+    let submarineRow = document.getElementById('submarineRow').value;
+    let submarineCol = document.getElementById('submarineCol').value;
+    let cruiserRow = document.getElementById('cruiserRow').value;
+    let cruiserCol = document.getElementById('cruiserCol').value;
+    let destroyerRow = document.getElementById('destroyerRow').value;
+    let destroyerCol = document.getElementById('destroyerCol').value;
+    game.placeShip(carrier0, carrierRow - 1, carrierCol - 1, createGrid, 'playerOne')
+    game.placeShip(battleship1, battleshipRow - 1, battleshipCol - 1, createGrid, 'playerOne')
+    game.placeShip(submarine2, submarineRow - 1, submarineCol - 1, createGrid, 'playerOne', 'horizontal')
+    game.placeShip(cruiser3, cruiserRow - 1, cruiserCol - 1, createGrid, 'playerOne', 'horizontal')
+    game.placeShip(destroyer4, destroyerRow - 1, destroyerCol - 1, createGrid, 'playerOne', 'horizontal')
+})
