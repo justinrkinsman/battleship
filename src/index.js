@@ -1,6 +1,5 @@
-window.addEventListener('load', (event) => {
-    console.log('It wotks')
-})
+/*window.addEventListener('load', (event) => {
+})*/
 
 //const { container } = require("webpack")
 

@@ -15,4 +15,20 @@
 
 body {
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#enterCoordinates {
+    position: absolute;
+    z-index: 1;
+    background-color: gray;
+}
+
+.invisible {
+    display: none;
+}
+
+button {
+    background-color: rgb(184, 179, 179)
 }

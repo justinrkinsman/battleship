@@ -9,6 +9,46 @@
     <script src="./main.js" defer></script>
 </head>
 <body>
-    
+    <div id="enterCoordinates">
+        <fieldset>
+            <p>Please enter your ship's coordinates: </p>
+        </fieldset>
+        <fieldset>
+            <legend>Carrier</legend>
+            <label for="carrierRow">Row: </label>
+            <input type="text" id="carrierRow" name="carrierRow" placeholder="1-10">
+            <label for="carrierCol">Column: </label>
+            <input type="text" id="carrierCol" name="carrierCol" placeholder="1-10">
+        </fieldset>
+        <fieldset>
+            <legend>Battleship</legend>
+            <label for="battleshipRow">Row: </label>
+            <input type="text" id="battleshipRow" name="battleshipRow">
+            <label for="battleshipCol">Column: </label>
+            <input type="text" id="battleshipCol" name="battleshipCol">
+        </fieldset>
+        <fieldset>
+            <legend>Cruiser</legend>
+            <label for="cruiserRow">Row: </label>
+            <input type="text" id="cruiserRow" name="cruiserRow">
+            <label for="cruiserCol">Column: </label>
+            <input type="text" id="cruiserCol" name="cruiserCol">
+        </fieldset>
+        <fieldset>
+            <legend>Submarine</legend>
+            <label for="submarineRow">Row: </label>
+            <input type="text" id="submarineRow" name="submarineRow">
+            <label for="submarineCol">Column: </label>
+            <input type="text" id="submarineCol" name="submarineCol">
+        </fieldset>
+        <fieldset>
+            <legend>Destroyer</legend>
+            <label for="destroyerRow">Row: </label>
+            <input type="text" id="destroyerRow" name="destroyerRow">
+            <label for="destroyerCol">Column: </label>
+            <input type="text" id="destroyerCol" name="destroyerCol">
+        </fieldset>
+        <button type="button">Submit</button>
+    </div>
 </body>
 </html>
