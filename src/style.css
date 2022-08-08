@@ -40,7 +40,10 @@ button {
     background-color: rgb(184, 179, 179)
 }
 
-/*#carrierCoordinates, #battleshipCoordinates, #cruiserCoordinates, 
-#submarineCoordinates, #destroyerCoordinates{
-    
-}*/
+.playerOne[data-shipName] {
+    background-color: red
+}
+
+.playerOne{
+    background-color: blue;
+}

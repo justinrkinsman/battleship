@@ -179,6 +179,12 @@ const reselectCoordinates = (player, ship, grid) => {
         document.getElementById(`${shipName}Submit`).addEventListener('click', () => {
             let row = document.getElementById(`new${shipName}Row`).value;
             let col = document.getElementById(`new${shipName}Col`).value;
+            /*if (grid[row - 1][col - 1] === 2){
+                reselectCoordinates("playerOne", ship, createGrid)
+                document.getElementById(`${shipName}Coordinates`).classList.remove('visible')    fixthis
+                //console.log(ship)
+                return
+            }*/
             game.placeShip(ship, row - 1, col - 1, createGrid, 'playerOne')
             document.getElementById(`${shipName}Coordinates`).classList.remove('visible')
         })
@@ -311,7 +317,7 @@ document.getElementById('submit').addEventListener('click', () => {
     let destroyerCol = document.getElementById('destroyerCol').value;
     game.placeShip(carrier0, carrierRow - 1, carrierCol - 1, createGrid, 'playerOne')
     game.placeShip(battleship1, battleshipRow - 1, battleshipCol - 1, createGrid, 'playerOne')
-    game.placeShip(submarine2, submarineRow - 1, submarineCol - 1, createGrid, 'playerOne', 'horizontal')
-    game.placeShip(cruiser3, cruiserRow - 1, cruiserCol - 1, createGrid, 'playerOne', 'horizontal')
-    game.placeShip(destroyer4, destroyerRow - 1, destroyerCol - 1, createGrid, 'playerOne', 'horizontal')
+    game.placeShip(submarine2, submarineRow - 1, submarineCol - 1, createGrid, 'playerOne')
+    game.placeShip(cruiser3, cruiserRow - 1, cruiserCol - 1, createGrid, 'playerOne')
+    game.placeShip(destroyer4, destroyerRow - 1, destroyerCol - 1, createGrid, 'playerOne')
 })
