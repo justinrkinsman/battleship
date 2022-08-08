@@ -104,12 +104,17 @@ function gameboard() {
                 if ((10 - column) < newShip.length){
                     let newColumn = column - i
                     if (gridSelection[row][newColumn] === 2){
-                        console.log('problems')
+                        reselectCoordinates(player, shipName, gridSelection)
+                        return
                     }
                     gridSelection[row][newColumn] = 2
                     shipLocator(`${player}${row}, ${newColumn}`, shipName, i)
                 }else{
                     let newColumn = column + i
+                    if (gridSelection[row][newColumn] === 2){
+                        reselectCoordinates(player, shipName, gridSelection)
+                        return
+                    }
                     gridSelection[row][newColumn] = 2
                     shipLocator(`${player}${row}, ${newColumn}`, shipName, i)
                 }
@@ -169,7 +174,14 @@ function gameboard() {
 
 const reselectCoordinates = (player, ship, grid) => {
     if (player === "playerOne"){
-        prompt('Please Enter New Coordinates')
+        let shipName = ship.name.slice(0, -1)
+        document.getElementById(`${shipName}Coordinates`).classList.add('visible')
+        document.getElementById(`${shipName}Submit`).addEventListener('click', () => {
+            let row = document.getElementById(`new${shipName}Row`).value;
+            let col = document.getElementById(`new${shipName}Col`).value;
+            game.placeShip(ship, row - 1, col - 1, createGrid, 'playerOne')
+            document.getElementById(`${shipName}Coordinates`).classList.remove('visible')
+        })
     }else if (player === 'playerTwo'){
         game.placeShip(ship, randomCooridnates.row, randomCooridnates.col, grid, player)
         return

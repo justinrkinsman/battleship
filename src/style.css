@@ -29,6 +29,18 @@ body {
     display: none;
 }
 
+.visible {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    background-color: gray;
+}
+
 button {
     background-color: rgb(184, 179, 179)
 }
+
+/*#carrierCoordinates, #battleshipCoordinates, #cruiserCoordinates, 
+#submarineCoordinates, #destroyerCoordinates{
+    
+}*/
