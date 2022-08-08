@@ -1,8 +1,8 @@
-/*window.addEventListener('load', (event) => {
-    let game = gameboard()
-    game.placeShip()
-    console.log(game.placeShip())
-})*/
+window.addEventListener('load', (event) => {
+    console.log('It wotks')
+})
+
+//const { container } = require("webpack")
 
 //const { ContextExclusionPlugin } = require("webpack")
 
@@ -175,24 +175,27 @@ function gameboard() {
 
 const reselectCoordinates = (player, ship, grid) => {
     if (player === "playerOne"){
-        console.log('this is player one speaking')
+        prompt('Please Enter New Coordinates')
     }else if (player === 'playerTwo'){
-        console.log('it works')
         game.placeShip(ship, randomCooridnates.row, randomCooridnates.col, grid, player)
+        return
     }
+    return
 }
 
 const gameOver = (playerName) => {
     if (playerName === 'playerTwo'){
         alert (`Game Over. Player One Wins!`)
+        location.reload()
     }else if (playerName === 'playerOne'){
         alert ('Game Over. Player Two Wins!')
+        location.reload()
     }
 }
 
 const getShipArray = (shipName, player) => {
     let index = shipName.slice(-1)
-    console.log(createGrid2)
+    //console.log(createGrid2)
     return player[index].name
 }
 
@@ -236,6 +239,7 @@ let createNewGrid2 = (() => {
 
 const populateGrid = (coordinates, result) => {
     let item = document.getElementById(coordinates)
+    shipName = item.getAttribute('data-shipname')
     item.innerText = 'X'
     if (result == 'Hit'){
         item.style.backgroundColor = 'red'
@@ -245,6 +249,9 @@ const populateGrid = (coordinates, result) => {
 }
 
 const game = gameboard()
+
+//const playerOneCoordinatesRow = prompt('Aircraft Carrier coordinates? (Row)')
+//const playerOneCoordinatesCol = prompt('Aircraft Carrier coordinates? (Column)')
 
 game.placeShip(destroyer4, 0, 0, createGrid, 'playerOne')
 game.placeShip(battleship1, 2, 2, createGrid, 'playerOne')
