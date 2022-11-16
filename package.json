@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/justinrkinsman/battleship/issues"
   },
-  "homepage": "https://github.com/justinrkinsman/battleship#readme",
+  "homepage": "https://justinrkinsman.github.io/battleship/",
   "devDependencies": {
     "@babel/core": "^7.18.9",
     "@babel/preset-env": "^7.18.9",
